@@ -2,9 +2,15 @@ class ResponseEntity {
   final Header header;
   final Body body;
   final TotalCount totalCount;
+  final NumOfRows? numOfRows;
+  final PageNo? pageNo;
 
   ResponseEntity(
-      {required this.header, required this.body, required this.totalCount});
+      {required this.header,
+      required this.body,
+      required this.totalCount,
+      this.numOfRows,
+      this.pageNo});
 }
 
 class Body<T> {
