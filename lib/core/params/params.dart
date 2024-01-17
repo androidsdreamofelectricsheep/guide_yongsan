@@ -12,14 +12,10 @@ class BaseParams {
 }
 
 // 중분류
-class MediumCategoryParams extends BaseParams {
+class MediumCategoryParams {
   final String majorId;
 
-  MediumCategoryParams(
-      {required super.serviceKey,
-      required super.returnType,
-      required super.global,
-      required this.majorId});
+  MediumCategoryParams({required this.majorId});
 }
 
 // 편의시설/업체 정보
@@ -30,10 +26,7 @@ class MainInfoParams extends MediumCategoryParams {
   final int pageNo;
 
   MainInfoParams(
-      {required super.serviceKey,
-      required super.returnType,
-      required super.global,
-      required super.majorId,
+      {required super.majorId,
       required this.mediumId,
       required this.minorId,
       required this.numOfRows,
@@ -41,12 +34,8 @@ class MainInfoParams extends MediumCategoryParams {
 }
 
 // 시설/업체 세부정보
-class CompanyDetailInfoParams extends BaseParams {
+class CompanyDetailInfoParams {
   final String companyId;
 
-  CompanyDetailInfoParams(
-      {required super.serviceKey,
-      required super.returnType,
-      required super.global,
-      required this.companyId});
+  CompanyDetailInfoParams({required this.companyId});
 }
