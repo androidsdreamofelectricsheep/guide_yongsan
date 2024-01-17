@@ -38,6 +38,8 @@ dependencies:
   dartz: ^0.10.1
   http: ^1.1.2
   json_annotation: ^4.8.1
+  connectivity_plus: ^2.3.8
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
