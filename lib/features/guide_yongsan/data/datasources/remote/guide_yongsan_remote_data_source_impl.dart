@@ -11,20 +11,25 @@ import 'package:guide_yongsan/features/guide_yongsan/data/models/medium_category
 import 'package:http/http.dart' as http;
 
 class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
+  final http.Client httpClient;
+
+  GuideYongsanRemoteDataSourceImpl({required this.httpClient});
+
   @override
-  Future<List<CompanyDetailModel>> getCompanyInfo(
+  Future<List<CompanyDetailInfoModel>> getCompanyInfo(
       {required CompanyDetailInfoParams companyDetailInfoParams}) async {
     var companyId = companyDetailInfoParams.companyId;
     final url = Uri.parse(
         '$baseUrl/$companyDetailInfo?$necessaryParams&$companyIdParam=$companyId');
-    final response = await http.get(url);
 
-    List<CompanyDetailModel> companyDetailList = [];
+    final response = await httpClient.get(url);
+
+    List<CompanyDetailInfoModel> companyDetailList = [];
     if (response.statusCode == 200) {
       final companyDetails = jsonDecode(response.body);
 
       for (var companyDetail in companyDetails) {
-        companyDetailList.add(CompanyDetailModel.fromJson(companyDetail));
+        companyDetailList.add(CompanyDetailInfoModel.fromJson(companyDetail));
       }
 
       return companyDetailList;
@@ -41,7 +46,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
     var minorId = mainInfoParams.minorId;
     final url = Uri.parse(
         '$baseUrl/$mainInfo?$necessaryParams&$majorCategory=$majorId&$mediumCategory=$mediumId&$minorIdParam=$minorId&$numOfRowsParam=$numOfRows&$pageNoParam=$pageNo');
-    final response = await http.get(url);
+    final response = await httpClient.get(url);
 
     List<MainInfoModel> mainInfoList = [];
     if (response.statusCode == 200) {
@@ -60,7 +65,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
   @override
   Future<List<MajorCategoryModel>> getMajorCategory() async {
     final url = Uri.parse('$baseUrl/$majorCategory?$necessaryParams');
-    final response = await http.get(url);
+    final response = await httpClient.get(url);
 
     List<MajorCategoryModel> majorCategoryList = [];
     if (response.statusCode == 200) {
@@ -81,7 +86,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
       {required MediumCategoryParams majorId}) async {
     final url = Uri.parse(
         '$baseUrl/$mediumCategory?$necessaryParams&$majorCategory=${majorId.majorId}');
-    final response = await http.get(url);
+    final response = await httpClient.get(url);
 
     List<MediumCategoryModel> mediumCategoryList = [];
     if (response.statusCode == 200) {

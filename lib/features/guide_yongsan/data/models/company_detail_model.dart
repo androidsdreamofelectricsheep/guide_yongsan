@@ -4,13 +4,13 @@ import 'package:json_annotation/json_annotation.dart';
 part "company_detail_model.g.dart";
 
 @JsonSerializable()
-class CompanyDetailModel extends CompanyDetailInfoEntity {
-  CompanyDetailModel(
+class CompanyDetailInfoModel extends CompanyDetailInfoEntity {
+  CompanyDetailInfoModel(
       {required super.companyItemId,
       required super.companyItem,
       required super.companyInfo});
 
-  factory CompanyDetailModel.fromJson(Map<String, dynamic> json) {
+  factory CompanyDetailInfoModel.fromJson(Map<String, dynamic> json) {
     return _$CompanyDetailModelFromJson(json);
   }
 

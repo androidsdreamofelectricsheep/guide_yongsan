@@ -4,15 +4,19 @@ import 'package:guide_yongsan/features/guide_yongsan/data/models/main_info_model
 import 'package:guide_yongsan/features/guide_yongsan/data/models/major_category_model.dart';
 import 'package:guide_yongsan/features/guide_yongsan/data/models/medium_category_model.dart';
 
-abstract class GuideYongsanRemoteDataSource {
-  Future<List<MajorCategoryModel>> getMajorCategory();
+abstract class GuideYongsanLocalDataSource {
+  Future<List<MajorCategoryModel>> getCachedMajorCategory();
 
-  Future<List<MediumCategoryModel>> getMediumCategory(
+  Future<List<MediumCategoryModel>> getCachedMediumCategory(
       {required MediumCategoryParams majorId});
 
-  Future<List<MainInfoModel>> getMainInfo(
+  Future<List<MainInfoModel>> getCachedMainInfo(
       {required MainInfoParams mainInfoParams});
 
-  Future<List<CompanyDetailInfoModel>> getCompanyInfo(
+  Future<List<CompanyDetailInfoModel>> getCachedCompanyDetail(
       {required CompanyDetailInfoParams companyDetailInfoParams});
+
+  Future<void> cacheYongsanRemoteData(
+      {required List<String> yongsanRemoteData,
+      required String listNameForCaching});
 }
