@@ -9,7 +9,7 @@ class GetMainInfo {
 
   GetMainInfo(this.repository);
 
-  Future<Either<Failure, MainInfoEntity>> call(
+  Future<Either<Failure, List<MainInfoEntity>>> call(
       {required MainInfoParams params}) async {
     return await repository.getMainInfo(params: params);
   }

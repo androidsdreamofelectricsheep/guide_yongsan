@@ -9,7 +9,7 @@ class GetCompanyDetailInfo {
 
   GetCompanyDetailInfo(this.repository);
 
-  Future<Either<Failure, CompanyDetailInfoEntity>> call(
+  Future<Either<Failure, List<CompanyDetailInfoEntity>>> call(
       {required CompanyDetailInfoParams params}) async {
     return await repository.getCompanyDetailInfo(params: params);
   }

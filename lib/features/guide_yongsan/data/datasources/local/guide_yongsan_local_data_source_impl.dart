@@ -54,7 +54,6 @@ class GuideYongsanLocalDataSourceImpl implements GuideYongsanLocalDataSource {
         .toList());
   }
 
-  // TODO: yongsanRemoteData 반드시 toJson으로 이루어진 문자열 배열이 파라미터로 들어와야 함
   @override
   Future<void> cacheYongsanRemoteData(
       {required List<String> yongsanRemoteData,

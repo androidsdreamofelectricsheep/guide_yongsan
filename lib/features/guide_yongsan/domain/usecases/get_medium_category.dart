@@ -9,7 +9,7 @@ class GetMediumCategory {
 
   GetMediumCategory(this.repository);
 
-  Future<Either<Failure, MediumCategoryEntity>> call(
+  Future<Either<Failure, List<MediumCategoryEntity>>> call(
       {required MediumCategoryParams params}) async {
     return await repository.getMediumCategory(params: params);
   }

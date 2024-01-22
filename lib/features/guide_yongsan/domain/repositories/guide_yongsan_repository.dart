@@ -8,15 +8,14 @@ import 'package:guide_yongsan/features/guide_yongsan/domain/entities/medium_cate
 
 abstract class GuideYongsanRepository {
   // 대분류 카테고리
-  Future<Either<Failure, MarjorCategoryEntity>> getMajorCategory(
-      {required BaseParams params});
+  Future<Either<Failure, List<MarjorCategoryEntity>>> getMajorCategory();
   // 중분류 카테고리
-  Future<Either<Failure, MediumCategoryEntity>> getMediumCategory(
+  Future<Either<Failure, List<MediumCategoryEntity>>> getMediumCategory(
       {required MediumCategoryParams params});
   // 편의시설/업체 정보
-  Future<Either<Failure, MainInfoEntity>> getMainInfo(
+  Future<Either<Failure, List<MainInfoEntity>>> getMainInfo(
       {required MainInfoParams params});
   // 시설/업체 세부정보
-  Future<Either<Failure, CompanyDetailInfoEntity>> getCompanyDetailInfo(
+  Future<Either<Failure, List<CompanyDetailInfoEntity>>> getCompanyDetailInfo(
       {required CompanyDetailInfoParams params});
 }

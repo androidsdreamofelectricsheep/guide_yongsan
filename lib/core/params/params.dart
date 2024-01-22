@@ -15,7 +15,7 @@ class BaseParams {
 class MediumCategoryParams {
   final String majorId;
 
-  MediumCategoryParams({required this.majorId});
+  const MediumCategoryParams({required this.majorId});
 }
 
 // 편의시설/업체 정보
@@ -25,7 +25,7 @@ class MainInfoParams extends MediumCategoryParams {
   final int numOfRows;
   final int pageNo;
 
-  MainInfoParams(
+  const MainInfoParams(
       {required super.majorId,
       required this.mediumId,
       required this.minorId,
