@@ -50,9 +50,9 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<MainInfoModel> mainInfoList = [];
     if (response.statusCode == 200) {
-      final mainInfos = jsonDecode(response.body);
+      final mainInfos = json.decode(response.body);
 
-      for (var mainInfo in mainInfos) {
+      for (var mainInfo in mainInfos['items']) {
         mainInfoList.add(MainInfoModel.fromJson(mainInfo));
       }
 
@@ -69,7 +69,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<MajorCategoryModel> majorCategoryList = [];
     if (response.statusCode == 200) {
-      final majorCategories = jsonDecode(response.body);
+      final majorCategories = jsonDecode(response.body)['items'];
 
       for (var majorCategory in majorCategories) {
         majorCategoryList.add(MajorCategoryModel.fromJson(majorCategory));

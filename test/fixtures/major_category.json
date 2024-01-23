@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "majorId": "01",
+      "majorName": "공공"
+    },
+    {
+      "majorId": "02",
+      "majorName": "음식"
+    },
+    {
+      "majorId": "03",
+      "majorName": "숙박"
+    },
+    {
+      "majorId": "04",
+      "majorName": "생활"
+    },
+    {
+      "majorId": "05",
+      "majorName": "의료"
+    },
+    {
+      "majorId": "06",
+      "majorName": "교육"
+    },
+    {
+      "majorId": "07",
+      "majorName": "문화관광"
+    },
+    {
+      "majorId": "08",
+      "majorName": "전자상가지구"
+    },
+    {
+      "majorId": "09",
+      "majorName": "전통시장"
+    },
+    {
+      "majorId": "10",
+      "majorName": "대형쇼핑센터"
+    }
+  ]
+}
