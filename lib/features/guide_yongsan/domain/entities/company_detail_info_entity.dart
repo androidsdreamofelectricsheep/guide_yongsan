@@ -3,7 +3,7 @@ class CompanyDetailInfoEntity {
   final String companyItem;
   final String companyInfo;
 
-  CompanyDetailInfoEntity(
+  const CompanyDetailInfoEntity(
       {required this.companyItemId,
       required this.companyItem,
       required this.companyInfo});

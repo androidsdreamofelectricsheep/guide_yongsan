@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:guide_yongsan/core/params/params.dart';
@@ -7,8 +5,6 @@ import 'package:guide_yongsan/features/guide_yongsan/domain/entities/medium_cate
 import 'package:guide_yongsan/features/guide_yongsan/domain/repositories/guide_yongsan_repository.dart';
 import 'package:guide_yongsan/features/guide_yongsan/domain/usecases/get_medium_category.dart';
 import 'package:mocktail/mocktail.dart';
-
-// class _MockMediumCategoryParams extends Mock implements MediumCategoryParams {}
 
 class MockGetMediumCategoryRepository extends Mock
     implements GuideYongsanRepository {}
@@ -30,6 +26,7 @@ void main() {
   ];
 
   test('should get medium category', () async {
+    // arrange
     when(() => repository.getMediumCategory(params: params))
         .thenAnswer((_) async => const Right(mediumCategoryList));
 

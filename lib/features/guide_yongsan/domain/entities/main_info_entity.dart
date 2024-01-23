@@ -5,15 +5,15 @@ class MainInfoEntity {
   final String companyId;
   final String companyName;
   final String addr;
-  final String addrDetail;
-  final String keyWord;
-  final String addrId;
-  final String phone;
+  final String? addrDetail;
+  final String? keyWord;
+  final String? addrId;
+  final String? phone;
   final String zipCode;
   final String pointLng;
   final String pointLat;
 
-  MainInfoEntity(
+  const MainInfoEntity(
       {required this.num,
       required this.administrtvAreaId,
       required this.minorId,
