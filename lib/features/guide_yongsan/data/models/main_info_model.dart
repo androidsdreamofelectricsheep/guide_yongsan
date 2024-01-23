@@ -5,7 +5,7 @@ part "main_info_model.g.dart";
 
 @JsonSerializable()
 class MainInfoModel extends MainInfoEntity {
-  MainInfoModel(
+  const MainInfoModel(
       {required super.num,
       required super.administrtvAreaId,
       required super.minorId,

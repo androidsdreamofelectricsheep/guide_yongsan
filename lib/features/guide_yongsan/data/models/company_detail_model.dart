@@ -5,7 +5,7 @@ part "company_detail_model.g.dart";
 
 @JsonSerializable()
 class CompanyDetailInfoModel extends CompanyDetailInfoEntity {
-  CompanyDetailInfoModel(
+  const CompanyDetailInfoModel(
       {required super.companyItemId,
       required super.companyItem,
       required super.companyInfo});

@@ -5,7 +5,8 @@ part "medium_category_model.g.dart";
 
 @JsonSerializable()
 class MediumCategoryModel extends MediumCategoryEntity {
-  MediumCategoryModel({required super.mediumId, required super.mediumName});
+  const MediumCategoryModel(
+      {required super.mediumId, required super.mediumName});
 
   factory MediumCategoryModel.fromJson(Map<String, dynamic> json) {
     return _$MediumCategoryModelFromJson(json);
