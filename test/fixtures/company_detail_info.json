@@ -1,0 +1,29 @@
+{
+  "item": [
+    {
+      "companyItemId": 1,
+      "companyItem": "Operating Time",
+      "companyInfo": "Weekday 09:00~18:00"
+    },
+    {
+      "companyItemId": 2,
+      "companyItem": "Home Page",
+      "companyInfo": "http://www.yongsan.go.kr"
+    },
+    {
+      "companyItemId": 3,
+      "companyItem": "How to Access",
+      "companyInfo": "328m from Exit 3 of Noksapyeong(Yongsan-gu Office) Station"
+    },
+    {
+      "companyItemId": 4,
+      "companyItem": "Parking",
+      "companyInfo": "N"
+    },
+    {
+      "companyItemId": 5,
+      "companyItem": "etc",
+      "companyInfo": "Yongsan-Gu Office"
+    }
+  ]
+}

@@ -29,8 +29,8 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
       {required CompanyDetailInfoParams params}) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteCompanyDetailInfo = await remoteDataSource.getCompanyInfo(
-            companyDetailInfoParams: params);
+        final remoteCompanyDetailInfo = await remoteDataSource
+            .getCompanyDetailInfo(companyDetailInfoParams: params);
 
         localDataSource.cacheYongsanRemoteData(
             yongsanRemoteData: remoteCompanyDetailInfo

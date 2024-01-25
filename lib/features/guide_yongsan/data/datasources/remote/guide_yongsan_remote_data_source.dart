@@ -13,6 +13,6 @@ abstract class GuideYongsanRemoteDataSource {
   Future<List<MainInfoModel>> getMainInfo(
       {required MainInfoParams mainInfoParams});
 
-  Future<List<CompanyDetailInfoModel>> getCompanyInfo(
+  Future<List<CompanyDetailInfoModel>> getCompanyDetailInfo(
       {required CompanyDetailInfoParams companyDetailInfoParams});
 }

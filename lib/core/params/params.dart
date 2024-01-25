@@ -37,5 +37,5 @@ class MainInfoParams extends MediumCategoryParams {
 class CompanyDetailInfoParams {
   final String companyId;
 
-  CompanyDetailInfoParams({required this.companyId});
+  const CompanyDetailInfoParams({required this.companyId});
 }

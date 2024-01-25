@@ -1,0 +1,20 @@
+{
+  "item": [
+    {
+      "num": 1,
+      "administrtvAreaId": "3020000",
+      "minorId": "001",
+      "minorName": "한식",
+      "companyId": "2021579B12EBDF274E28ABB7622046FAF476",
+      "companyName": "237페이지(237page)",
+      "addr": "서울특별시 용산구 회나무로 13",
+      "addrDetail": "1층",
+      "keyWord": "#식당 #음식점 #한식 #육류 #고기요리 #화로구이 #파스타 #단체석",
+      "addrId": "1117013000",
+      "phone": null,
+      "zipCode": "04343",
+      "pointLng": "126.98827525591582",
+      "pointLat": "37.53881113761811"
+    }
+  ]
+}

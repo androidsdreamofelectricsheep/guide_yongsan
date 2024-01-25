@@ -16,7 +16,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
   GuideYongsanRemoteDataSourceImpl({required this.httpClient});
 
   @override
-  Future<List<CompanyDetailInfoModel>> getCompanyInfo(
+  Future<List<CompanyDetailInfoModel>> getCompanyDetailInfo(
       {required CompanyDetailInfoParams companyDetailInfoParams}) async {
     var companyId = companyDetailInfoParams.companyId;
     final url = Uri.parse(
@@ -26,7 +26,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<CompanyDetailInfoModel> companyDetailList = [];
     if (response.statusCode == 200) {
-      final companyDetails = jsonDecode(response.body);
+      final companyDetails = jsonDecode(response.body)['item'];
 
       for (var companyDetail in companyDetails) {
         companyDetailList.add(CompanyDetailInfoModel.fromJson(companyDetail));
@@ -50,9 +50,9 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<MainInfoModel> mainInfoList = [];
     if (response.statusCode == 200) {
-      final mainInfos = json.decode(response.body);
+      final mainInfos = json.decode(response.body)['item'];
 
-      for (var mainInfo in mainInfos['items']) {
+      for (var mainInfo in mainInfos) {
         mainInfoList.add(MainInfoModel.fromJson(mainInfo));
       }
 
@@ -69,7 +69,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<MajorCategoryModel> majorCategoryList = [];
     if (response.statusCode == 200) {
-      final majorCategories = jsonDecode(response.body)['items'];
+      final majorCategories = jsonDecode(response.body)['item'];
 
       for (var majorCategory in majorCategories) {
         majorCategoryList.add(MajorCategoryModel.fromJson(majorCategory));
@@ -86,11 +86,12 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
       {required MediumCategoryParams majorId}) async {
     final url = Uri.parse(
         '$baseUrl/$mediumCategory?$necessaryParams&$majorCategory=${majorId.majorId}');
+
     final response = await httpClient.get(url);
 
     List<MediumCategoryModel> mediumCategoryList = [];
     if (response.statusCode == 200) {
-      final mediumCategories = jsonDecode(response.body);
+      final mediumCategories = jsonDecode(response.body)['item'];
 
       for (var mediumCategory in mediumCategories) {
         mediumCategoryList.add(MediumCategoryModel.fromJson(mediumCategory));

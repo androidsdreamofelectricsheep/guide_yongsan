@@ -1,0 +1,7 @@
+{
+  "item": [
+    { "mediumId": "01", "mediumName": "식당" },
+    { "mediumId": "02", "mediumName": "유흥주점" },
+    { "mediumId": "03", "mediumName": "카페" }
+  ]
+}
