@@ -14,6 +14,7 @@ import 'package:guide_yongsan/features/guide_yongsan/domain/entities/marjor_cate
 import 'package:guide_yongsan/features/guide_yongsan/domain/entities/medium_category_entity.dart';
 import 'package:guide_yongsan/features/guide_yongsan/domain/repositories/guide_yongsan_repository.dart';
 
+// TODO: 유틸함수로 리팩토링 필요
 class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
   final GuideYongsanRemoteDataSource remoteDataSource;
   final GuideYongsanLocalDataSource localDataSource;
@@ -33,10 +34,8 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
             .getCompanyDetailInfo(companyDetailInfoParams: params);
 
         localDataSource.cacheYongsanRemoteData(
-            yongsanRemoteData: remoteCompanyDetailInfo
-                .map((m) => json.encode(m.toJson()))
-                .toList(),
-            listNameForCaching: cachedMainInfo);
+            yongsanRemoteData: jsonEncode(remoteCompanyDetailInfo),
+            listNameForCaching: cachedCompanyDetail);
 
         return Right(remoteCompanyDetailInfo);
       } on ServerException {
@@ -62,8 +61,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
             await remoteDataSource.getMainInfo(mainInfoParams: params);
 
         localDataSource.cacheYongsanRemoteData(
-            yongsanRemoteData:
-                remoteMainInfo.map((m) => json.encode(m.toJson())).toList(),
+            yongsanRemoteData: jsonEncode(remoteMainInfo),
             listNameForCaching: cachedMainInfo);
 
         return Right(remoteMainInfo);
@@ -88,9 +86,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
         final remoteMajorCategory = await remoteDataSource.getMajorCategory();
 
         localDataSource.cacheYongsanRemoteData(
-            yongsanRemoteData: remoteMajorCategory
-                .map((m) => json.encode(m.toJson()))
-                .toList(),
+            yongsanRemoteData: jsonEncode(remoteMajorCategory),
             listNameForCaching: cachedMajorCategory);
 
         return Right(remoteMajorCategory);
@@ -117,9 +113,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
             await remoteDataSource.getMediumCategory(majorId: params);
 
         localDataSource.cacheYongsanRemoteData(
-            yongsanRemoteData: remoteMediumCategory
-                .map((m) => json.encode(m.toJson()))
-                .toList(),
+            yongsanRemoteData: jsonEncode(remoteMediumCategory),
             listNameForCaching: cachedMediumCategory);
 
         return Right(remoteMediumCategory);

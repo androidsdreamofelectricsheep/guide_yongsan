@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:guide_yongsan/core/errors/exceptions.dart';
 import 'package:guide_yongsan/core/params/params.dart';
-import 'package:guide_yongsan/features/guide_yongsan/data/datasources/remote/guide_yongsan_remote_data_source.dart';
 import 'package:guide_yongsan/features/guide_yongsan/data/datasources/remote/guide_yongsan_remote_data_source_impl.dart';
 import 'package:guide_yongsan/features/guide_yongsan/data/models/company_detail_model.dart';
 import 'package:guide_yongsan/features/guide_yongsan/data/models/main_info_model.dart';
@@ -18,7 +17,7 @@ import '../../../../../fixtures/fixture_reader.dart';
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  late GuideYongsanRemoteDataSource dataSource;
+  late GuideYongsanRemoteDataSourceImpl dataSource;
   late MockHttpClient mockHttpClient;
 
   setUp(() {

@@ -10,6 +10,7 @@ import 'package:guide_yongsan/features/guide_yongsan/data/models/major_category_
 import 'package:guide_yongsan/features/guide_yongsan/data/models/medium_category_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// TODO: 유틸함수로 리팩토링 필요
 class GuideYongsanLocalDataSourceImpl implements GuideYongsanLocalDataSource {
   final SharedPreferences sharedPreferences;
 
@@ -18,48 +19,81 @@ class GuideYongsanLocalDataSourceImpl implements GuideYongsanLocalDataSource {
   @override
   Future<List<CompanyDetailInfoModel>> getCachedCompanyDetail(
       {required CompanyDetailInfoParams companyDetailInfoParams}) {
-    final jsonString = sharedPreferences.getStringList(cachedCompanyDetail);
+    final jsonString = sharedPreferences.getString(cachedCompanyDetail);
 
-    return Future.value(jsonString
-        ?.map((m) => CompanyDetailInfoModel.fromJson(json.decode(m)))
-        .toList());
+    if (jsonString == null) throw CacheException();
+
+    final companyDetailInfos = json.decode(jsonString)['item'];
+
+    List<CompanyDetailInfoModel> companyDetailInfoList = [];
+
+    for (var companyDetailInfo in companyDetailInfos) {
+      companyDetailInfoList
+          .add(CompanyDetailInfoModel.fromJson(companyDetailInfo));
+    }
+
+    return Future.value(companyDetailInfoList);
   }
 
   @override
   Future<List<MainInfoModel>> getCachedMainInfo(
       {required MainInfoParams mainInfoParams}) {
-    final jsonString = sharedPreferences.getStringList(cachedMainInfo);
+    final jsonString = sharedPreferences.getString(cachedMainInfo);
 
-    return Future.value(jsonString
-        ?.map((m) => MainInfoModel.fromJson(json.decode(m)))
-        .toList());
+    if (jsonString == null) throw CacheException();
+
+    final mainInfos = json.decode(jsonString)['item'];
+
+    List<MainInfoModel> mainInfoList = [];
+
+    for (var mainInfo in mainInfos) {
+      mainInfoList.add(MainInfoModel.fromJson(mainInfo));
+    }
+
+    return Future.value(mainInfoList);
   }
 
   @override
   Future<List<MajorCategoryModel>> getCachedMajorCategory() {
-    final jsonString = sharedPreferences.getStringList(cachedMajorCategory);
+    final jsonString = sharedPreferences.getString(cachedMajorCategory);
 
-    return Future.value(jsonString
-        ?.map((m) => MajorCategoryModel.fromJson(json.decode(m)))
-        .toList());
+    if (jsonString == null) throw CacheException();
+
+    final majorCategories = json.decode(jsonString)['item'];
+
+    List<MajorCategoryModel> majorCategoryList = [];
+
+    for (var majorCategory in majorCategories) {
+      majorCategoryList.add(MajorCategoryModel.fromJson(majorCategory));
+    }
+
+    return Future.value(majorCategoryList);
   }
 
   @override
   Future<List<MediumCategoryModel>> getCachedMediumCategory(
       {required MediumCategoryParams majorId}) {
-    final jsonString = sharedPreferences.getStringList(cachedMediumCategory);
+    final jsonString = sharedPreferences.getString(cachedMediumCategory);
 
-    return Future.value(jsonString
-        ?.map((m) => MediumCategoryModel.fromJson(json.decode(m)))
-        .toList());
+    if (jsonString == null) throw CacheException();
+
+    final mediumCategories = json.decode(jsonString)['item'];
+
+    List<MediumCategoryModel> mediumCategoryList = [];
+
+    for (var majorCategory in mediumCategories) {
+      mediumCategoryList.add(MediumCategoryModel.fromJson(majorCategory));
+    }
+
+    return Future.value(mediumCategoryList);
   }
 
   @override
   Future<void> cacheYongsanRemoteData(
-      {required List<String> yongsanRemoteData,
+      {required String yongsanRemoteData,
       required String listNameForCaching}) async {
     if (yongsanRemoteData.isNotEmpty && listNameForCaching.isNotEmpty) {
-      sharedPreferences.setStringList(listNameForCaching, yongsanRemoteData);
+      sharedPreferences.setString(listNameForCaching, yongsanRemoteData);
     } else {
       throw CacheException();
     }
