@@ -17,5 +17,5 @@ abstract class GuideYongsanLocalDataSource {
       {required CompanyDetailInfoParams companyDetailInfoParams});
 
   Future<void> cacheYongsanRemoteData(
-      {required String yongsanRemoteData, required String listNameForCaching});
+      String yongsanRemoteData, String listNameForCaching);
 }

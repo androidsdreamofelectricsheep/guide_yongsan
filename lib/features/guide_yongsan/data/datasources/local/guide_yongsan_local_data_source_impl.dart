@@ -90,8 +90,7 @@ class GuideYongsanLocalDataSourceImpl implements GuideYongsanLocalDataSource {
 
   @override
   Future<void> cacheYongsanRemoteData(
-      {required String yongsanRemoteData,
-      required String listNameForCaching}) async {
+      String yongsanRemoteData, String listNameForCaching) async {
     if (yongsanRemoteData.isNotEmpty && listNameForCaching.isNotEmpty) {
       sharedPreferences.setString(listNameForCaching, yongsanRemoteData);
     } else {
