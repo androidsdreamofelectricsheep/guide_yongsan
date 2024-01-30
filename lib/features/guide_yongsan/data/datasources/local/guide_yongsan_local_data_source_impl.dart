@@ -17,7 +17,7 @@ class GuideYongsanLocalDataSourceImpl implements GuideYongsanLocalDataSource {
   GuideYongsanLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
-  Future<List<CompanyDetailInfoModel>> getCachedCompanyDetail(
+  Future<List<CompanyDetailInfoModel>> getCachedCompanyDetailInfo(
       {required CompanyDetailInfoParams companyDetailInfoParams}) {
     final jsonString = sharedPreferences.getString(cachedCompanyDetail);
 

@@ -13,7 +13,7 @@ abstract class GuideYongsanLocalDataSource {
   Future<List<MainInfoModel>> getCachedMainInfo(
       {required MainInfoParams mainInfoParams});
 
-  Future<List<CompanyDetailInfoModel>> getCachedCompanyDetail(
+  Future<List<CompanyDetailInfoModel>> getCachedCompanyDetailInfo(
       {required CompanyDetailInfoParams companyDetailInfoParams});
 
   Future<void> cacheYongsanRemoteData(

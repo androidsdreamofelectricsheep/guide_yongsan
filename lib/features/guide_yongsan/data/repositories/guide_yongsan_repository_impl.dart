@@ -47,7 +47,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
     } else {
       try {
         final localCompanyDetailInfo = await localDataSource
-            .getCachedCompanyDetail(companyDetailInfoParams: params);
+            .getCachedCompanyDetailInfo(companyDetailInfoParams: params);
         return Right(localCompanyDetailInfo);
       } on CacheException {
         return Left(CacheFailure(errorMsg: cacheFailureMsg));

@@ -148,7 +148,7 @@ void main() {
       when(() => mockSharedPreferences.getString(any()))
           .thenReturn(cachedCompanyDetailInfoFixture);
       // act
-      final result = await dataSource.getCachedCompanyDetail(
+      final result = await dataSource.getCachedCompanyDetailInfo(
           companyDetailInfoParams: params);
       // assert
       expect(result, companyDetailInfoList);
@@ -158,7 +158,7 @@ void main() {
       // arrange
       when(() => mockSharedPreferences.getString(any())).thenReturn(null);
       // act
-      final call = dataSource.getCachedCompanyDetail;
+      final call = dataSource.getCachedCompanyDetailInfo;
       // assert
       expect(() => call(companyDetailInfoParams: params),
           throwsA(isA<CacheException>()));
