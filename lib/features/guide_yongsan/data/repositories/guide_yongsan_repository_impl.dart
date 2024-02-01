@@ -42,7 +42,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
 
         return Right(remoteCompanyDetailInfo);
       } on ServerException {
-        return Left(ServerFailure(errorMsg: serverFailureMsg));
+        return const Left(ServerFailure(errorMsg: serverFailureMsg));
       }
     } else {
       try {
@@ -50,7 +50,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
             .getCachedCompanyDetailInfo(companyDetailInfoParams: params);
         return Right(localCompanyDetailInfo);
       } on CacheException {
-        return Left(CacheFailure(errorMsg: cacheFailureMsg));
+        return const Left(CacheFailure(errorMsg: cacheFailureMsg));
       }
     }
   }
@@ -72,7 +72,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
 
         return Right(remoteMainInfo);
       } on ServerException {
-        return Left(ServerFailure(errorMsg: serverFailureMsg));
+        return const Left(ServerFailure(errorMsg: serverFailureMsg));
       }
     } else {
       try {
@@ -80,7 +80,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
             await localDataSource.getCachedMainInfo(mainInfoParams: params);
         return Right(localMainInfo);
       } on CacheException {
-        return Left(CacheFailure(errorMsg: cacheFailureMsg));
+        return const Left(CacheFailure(errorMsg: cacheFailureMsg));
       }
     }
   }
@@ -100,7 +100,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
 
         return Right(remoteMajorCategory);
       } on ServerException {
-        return Left(ServerFailure(errorMsg: serverFailureMsg));
+        return const Left(ServerFailure(errorMsg: serverFailureMsg));
       }
     } else {
       try {
@@ -108,7 +108,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
             await localDataSource.getCachedMajorCategory();
         return Right(localMajorCategory);
       } on CacheException {
-        return Left(CacheFailure(errorMsg: cacheFailureMsg));
+        return const Left(CacheFailure(errorMsg: cacheFailureMsg));
       }
     }
   }
@@ -130,7 +130,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
 
         return Right(remoteMediumCategory);
       } on ServerException {
-        return Left(ServerFailure(errorMsg: serverFailureMsg));
+        return const Left(ServerFailure(errorMsg: serverFailureMsg));
       }
     } else {
       try {
@@ -138,7 +138,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
             await localDataSource.getCachedMediumCategory(majorId: params);
         return Right(localMediumCategory);
       } on CacheException {
-        return Left(CacheFailure(errorMsg: cacheFailureMsg));
+        return const Left(CacheFailure(errorMsg: cacheFailureMsg));
       }
     }
   }
