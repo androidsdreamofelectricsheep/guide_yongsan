@@ -18,8 +18,7 @@ class MajorCategoryProvider with ChangeNotifier {
 
   MajorCategoryProvider({this.majorCategory, this.failure});
 
-  void eitherFailureOrMajorCategory(
-      {required MajorCategoryProvider majorCategoryProvider}) async {
+  void eitherFailureOrMajorCategory() async {
     GuideYongsanRepositoryImpl repository = GuideYongsanRepositoryImpl(
         remoteDataSource:
             GuideYongsanRemoteDataSourceImpl(httpClient: http.Client()),
@@ -30,10 +29,16 @@ class MajorCategoryProvider with ChangeNotifier {
     final failureOrMajorCategory = await GetMajorCategory(repository).call();
 
     failureOrMajorCategory.fold((newFailure) {
+      // print('#############');
+      // print(newFailure);
+      // print('#############');
       majorCategory = null;
       failure = newFailure;
       notifyListeners();
     }, (newMajorCategory) {
+      // print('#############');
+      // print(newMajorCategory);
+      // print('#############');
       majorCategory = newMajorCategory;
       failure = null;
       notifyListeners();

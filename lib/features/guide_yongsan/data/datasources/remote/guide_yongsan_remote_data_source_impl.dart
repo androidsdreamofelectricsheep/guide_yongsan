@@ -69,12 +69,16 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<MajorCategoryModel> majorCategoryList = [];
     if (response.statusCode == 200) {
-      final majorCategories = jsonDecode(response.body)['item'];
-
+      final majorCategories = jsonDecode(response.body)['body']['item'];
+      // print('#################');
+      // print(majorCategories);
+      // print('#################');
       for (var majorCategory in majorCategories) {
         majorCategoryList.add(MajorCategoryModel.fromJson(majorCategory));
       }
-
+      // print('#################');
+      // print(majorCategoryList);
+      // print('#################');
       return majorCategoryList;
     } else {
       throw ServerException();
