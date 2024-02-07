@@ -95,7 +95,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<MediumCategoryModel> mediumCategoryList = [];
     if (response.statusCode == 200) {
-      final mediumCategories = jsonDecode(response.body)['item'];
+      final mediumCategories = jsonDecode(response.body)['body']['item'];
 
       for (var mediumCategory in mediumCategories) {
         mediumCategoryList.add(MediumCategoryModel.fromJson(mediumCategory));

@@ -17,9 +17,7 @@ class MediumCategoryProvider with ChangeNotifier {
 
   MediumCategoryProvider({this.mediumCategory, this.failure});
 
-  void eitherFailureOrMediumCategorya(
-      {required String majorId,
-      required MediumCategoryProvider mediumCategoryProvider}) async {
+  void eitherFailureOrMediumCategorya({required String majorId}) async {
     GuideYongsanRepositoryImpl repository = GuideYongsanRepositoryImpl(
         remoteDataSource:
             GuideYongsanRemoteDataSourceImpl(httpClient: http.Client()),
