@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:guide_yongsan/features/guide_yongsan/domain/entities/marjor_category_entity.dart';
+
 import 'package:guide_yongsan/features/guide_yongsan/domain/entities/medium_category_entity.dart';
-import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/major_category_provider.dart';
+
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/medium_category_provider.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/category_widget.dart';
 import 'package:provider/provider.dart';
 
 class MediumCategoryScreen extends StatelessWidget {
-  final String majorId;
-  const MediumCategoryScreen({super.key, required this.majorId});
+  final String majorId, majorName;
+  const MediumCategoryScreen(
+      {super.key, required this.majorId, required this.majorName});
 
   @override
   Widget build(BuildContext context) {
-    print('mediumCategory majorId');
-    print(majorId);
     final mediumCategoryProvider =
         Provider.of<MediumCategoryProvider>(context, listen: false);
-    // mediumCategoryProvider.eitherFailureOrMajorCategory();
     mediumCategoryProvider.eitherFailureOrMediumCategorya(majorId: majorId);
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Home')),
+        appBar: AppBar(title: Text(majorName)),
         body: SafeArea(
           child: Consumer<MediumCategoryProvider>(
               builder: (context, provider, widget) {
@@ -36,6 +34,7 @@ class MediumCategoryScreen extends StatelessWidget {
 
   GridView makeList(List<MediumCategoryEntity> mediumCategoryList) {
     return GridView.builder(
+        itemCount: mediumCategoryList.length,
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {

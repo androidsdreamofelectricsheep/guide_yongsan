@@ -29,16 +29,10 @@ class MajorCategoryProvider with ChangeNotifier {
     final failureOrMajorCategory = await GetMajorCategory(repository).call();
 
     failureOrMajorCategory.fold((newFailure) {
-      // print('#############');
-      // print(newFailure);
-      // print('#############');
       majorCategory = null;
       failure = newFailure;
       notifyListeners();
     }, (newMajorCategory) {
-      // print('#############');
-      // print(newMajorCategory);
-      // print('#############');
       majorCategory = newMajorCategory;
       failure = null;
       notifyListeners();

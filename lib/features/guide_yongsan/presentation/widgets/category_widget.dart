@@ -16,22 +16,28 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late String id;
     late String name;
-    if (majorName != null) {
+    if (majorId != null && majorName != null) {
+      id = majorId!;
       name = majorName!;
     }
-    if (mediumName != null) {
+    if (mediumId != null && mediumName != null) {
+      id = mediumId!;
       name = mediumName!;
     }
     return GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            if (majorId != null && mediumId != null) {
-              return MediumCategoryScreen(majorId: majorId!);
+            if (majorId != null && majorName != null) {
+              return MediumCategoryScreen(
+                majorId: majorId!,
+                majorName: majorName!,
+              );
             }
-            return MediumCategoryScreen(majorId: majorId!);
+            return const Center(child: CircularProgressIndicator());
           }));
         },
-        child: Column(children: [Text(name)]));
+        child: Column(children: [Text(name), Text(id)]));
   }
 }

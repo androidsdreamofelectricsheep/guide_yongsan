@@ -30,6 +30,7 @@ class HomeScreen extends StatelessWidget {
 
   GridView makeList(List<MarjorCategoryEntity> majorCategoryList) {
     return GridView.builder(
+        itemCount: majorCategoryList.length,
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
