@@ -44,6 +44,8 @@ class MediumCategoryScreen extends StatelessWidget {
             majorName: null,
             mediumId: mediumCategory.mediumId,
             mediumName: mediumCategory.mediumName,
+            subId: null,
+            subName: null,
           );
         });
   }

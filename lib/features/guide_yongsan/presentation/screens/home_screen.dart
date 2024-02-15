@@ -40,6 +40,8 @@ class HomeScreen extends StatelessWidget {
             majorName: majorCategory.majorName,
             mediumId: null,
             mediumName: null,
+            subId: null,
+            subName: null,
           );
         });
   }
