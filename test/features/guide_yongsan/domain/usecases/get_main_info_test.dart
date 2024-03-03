@@ -17,7 +17,7 @@ void main() {
   setUp(() {
     repository = MockGetMainInfoRepository();
     usecase = GetMainInfo(repository);
-    params = const MainInfoParams(
+    params = MainInfoParams(
         majorId: "02", mediumId: "01", minorId: "001", numOfRows: 1, pageNo: 1);
   });
 

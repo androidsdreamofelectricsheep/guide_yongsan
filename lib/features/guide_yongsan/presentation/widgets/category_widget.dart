@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/main_info_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/medium_category_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/sub_category_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CategoryWidget extends StatelessWidget {
   final String? majorId;
@@ -35,12 +37,7 @@ class CategoryWidget extends StatelessWidget {
       id = subId!;
       name = subName!;
     }
-    print('---------------------');
-    print(majorId);
-    print(majorName);
-    print(mediumId);
-    print(mediumName);
-    print('---------------------');
+
     return GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -50,12 +47,28 @@ class CategoryWidget extends StatelessWidget {
                 majorName: majorName!,
               );
             }
-            if (mediumId != null && mediumName != null) {
+            if (majorId != null &&
+                mediumId != null &&
+                mediumName != null &&
+                subId == null &&
+                subName == null) {
               return SubCategoryScreen(
                   majorId: majorId!,
                   mediumId: mediumId!,
                   mediumName: mediumName!);
             }
+            if (majorId != null &&
+                mediumId != null &&
+                subId != null &&
+                subName != null) {
+              return MainInfoScreen(
+                majorId: majorId!,
+                mediumId: mediumId!,
+                minorId: subId!,
+                subName: subName!,
+              );
+            }
+
             return const Center(child: CircularProgressIndicator());
           }));
         },

@@ -226,7 +226,7 @@ void main() {
           pointLat: "37.53881113761811")
     ];
 
-    const params = MainInfoParams(
+    var params = MainInfoParams(
         majorId: "02", mediumId: "01", minorId: "001", numOfRows: 1, pageNo: 1);
 
     test('should check if the device is online', () async {

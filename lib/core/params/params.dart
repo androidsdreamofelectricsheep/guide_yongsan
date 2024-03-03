@@ -22,15 +22,15 @@ class MediumCategoryParams {
 class MainInfoParams extends MediumCategoryParams {
   final String mediumId;
   final String minorId;
-  final int numOfRows;
-  final int pageNo;
+  int? numOfRows;
+  int? pageNo;
 
-  const MainInfoParams(
+  MainInfoParams(
       {required super.majorId,
       required this.mediumId,
       required this.minorId,
-      required this.numOfRows,
-      required this.pageNo});
+      this.numOfRows,
+      this.pageNo});
 }
 
 // 시설/업체 세부정보

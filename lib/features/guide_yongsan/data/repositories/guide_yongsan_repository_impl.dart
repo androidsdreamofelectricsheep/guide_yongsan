@@ -63,9 +63,7 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
         final remoteMainInfo =
             await remoteDataSource.getMainInfo(mainInfoParams: params);
 
-        // localDataSource.cacheYongsanRemoteData(
-        //     yongsanRemoteData: jsonEncode(remoteMainInfo),
-        //     listNameForCaching: cachedMainInfo);
+        print(remoteMainInfo);
 
         localDataSource.cacheYongsanRemoteData(
             jsonEncode(remoteMainInfo), cachedMainInfo);

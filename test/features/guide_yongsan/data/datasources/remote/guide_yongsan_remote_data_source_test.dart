@@ -97,7 +97,7 @@ void main() {
   group('getMainInfo', () {
     final tFixture = fixture('main_info.json');
     final mainInfos = jsonDecode(tFixture)['item'];
-    const params = MainInfoParams(
+    var params = MainInfoParams(
         majorId: "02", mediumId: "01", minorId: "001", numOfRows: 1, pageNo: 1);
 
     List<MainInfoModel> mainInfoList = [];

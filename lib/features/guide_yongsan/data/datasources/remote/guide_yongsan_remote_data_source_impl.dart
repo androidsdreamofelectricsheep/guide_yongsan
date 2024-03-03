@@ -9,6 +9,7 @@ import 'package:guide_yongsan/features/guide_yongsan/data/models/main_info_model
 import 'package:guide_yongsan/features/guide_yongsan/data/models/major_category_model.dart';
 import 'package:guide_yongsan/features/guide_yongsan/data/models/medium_category_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
   final http.Client httpClient;
@@ -26,7 +27,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     List<CompanyDetailInfoModel> companyDetailList = [];
     if (response.statusCode == 200) {
-      final companyDetails = jsonDecode(response.body)['item'];
+      final companyDetails = jsonDecode(response.body)['body']['item'];
 
       for (var companyDetail in companyDetails) {
         companyDetailList.add(CompanyDetailInfoModel.fromJson(companyDetail));
@@ -44,13 +45,24 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
     var majorId = mainInfoParams.majorId;
     var mediumId = mainInfoParams.mediumId;
     var minorId = mainInfoParams.minorId;
+    var pageNo = mainInfoParams.pageNo;
+    var numOfRows = mainInfoParams.numOfRows;
+
     final url = Uri.parse(
         '$baseUrl/$mainInfo?$necessaryParams&$majorCategory=$majorId&$mediumCategory=$mediumId&$minorIdParam=$minorId&$numOfRowsParam=$numOfRows&$pageNoParam=$pageNo');
+    print('#################');
+    print(url);
+    print('#################');
     final response = await httpClient.get(url);
 
     List<MainInfoModel> mainInfoList = [];
     if (response.statusCode == 200) {
-      final mainInfos = json.decode(response.body)['item'];
+      final sharedPreferences = await SharedPreferences.getInstance();
+
+      sharedPreferences.setString('mainInfoTotalCount',
+          (json.decode(response.body)['body']['totalCount']).toString());
+
+      final mainInfos = json.decode(response.body)['body']['item'];
 
       for (var mainInfo in mainInfos) {
         mainInfoList.add(MainInfoModel.fromJson(mainInfo));
@@ -70,15 +82,10 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
     List<MajorCategoryModel> majorCategoryList = [];
     if (response.statusCode == 200) {
       final majorCategories = jsonDecode(response.body)['body']['item'];
-      // print('#################');
-      // print(majorCategories);
-      // print('#################');
+
       for (var majorCategory in majorCategories) {
         majorCategoryList.add(MajorCategoryModel.fromJson(majorCategory));
       }
-      // print('#################');
-      // print(majorCategoryList);
-      // print('#################');
       return majorCategoryList;
     } else {
       throw ServerException();
