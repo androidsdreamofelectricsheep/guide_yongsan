@@ -72,7 +72,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
   }
 
   int getItemCount(MainInfoProvider provider) {
-    return provider.mainInfoMap[provider.minorId]?['list']?.length +
+    return provider.mainInfoMap[provider.keyName]?['list']?.length +
         (provider.loading ? 1 : 0);
   }
 
@@ -83,7 +83,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
         body: SafeArea(
           child:
               Consumer<MainInfoProvider>(builder: (context, provider, widget) {
-            if (provider.mainInfoMap[provider.minorId]?['list']! != null) {
+            if (provider.mainInfoMap[provider.keyName]?['list']! != null) {
               return ListView.separated(
                 controller: _scrollController,
                 scrollDirection: Axis.vertical,
@@ -104,32 +104,71 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
   }
 
   Widget buildItem(MainInfoProvider provider, int index) {
-    if (provider.mainInfoMap[widget.minorId]?['list'] != null &&
-        index < provider.mainInfoMap[widget.minorId]?['list']?.length &&
+    if (provider.mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                ?['list'] !=
+            null &&
+        index <
+            provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ?['list']
+                ?.length &&
         provider.failure == null) {
       return MainInfoWidget(
         majorId: widget.majorId,
         mediumId: widget.mediumId,
         minorId: widget.minorId,
         subName: widget.subName,
-        num: provider.mainInfoMap[widget.minorId]['list'][index].num.toString(),
-        companyId:
-            provider.mainInfoMap[widget.minorId]['list']?[index].companyId,
-        companyName:
-            provider.mainInfoMap[widget.minorId]['list']?[index].companyName ??
-                '',
-        addr: provider.mainInfoMap[widget.minorId]['list']?[index].addr ?? '',
-        addrDetail:
-            provider.mainInfoMap[widget.minorId]['list']?[index].addrDetail ??
-                '',
-        keyWord:
-            provider.mainInfoMap[widget.minorId]['list']?[index].keyWord ?? '',
-        addrId: provider.mainInfoMap[widget.minorId]['list']?[index].addrId,
-        phone: provider.mainInfoMap[widget.minorId]['list']?[index].phone ?? '',
-        zipCode:
-            provider.mainInfoMap[widget.minorId]['list']?[index].zipCode ?? '',
-        pointLng: provider.mainInfoMap[widget.minorId]['list']?[index].pointLng,
-        pointLat: provider.mainInfoMap[widget.minorId]['list']?[index].pointLat,
+        num: provider
+            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                ['list'][index]
+            .num
+            .toString(),
+        companyId: provider
+            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                ['list']?[index]
+            .companyId,
+        companyName: provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ['list']?[index]
+                .companyName ??
+            '',
+        addr: provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ['list']?[index]
+                .addr ??
+            '',
+        addrDetail: provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ['list']?[index]
+                .addrDetail ??
+            '',
+        keyWord: provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ['list']?[index]
+                .keyWord ??
+            '',
+        addrId: provider
+            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                ['list']?[index]
+            .addrId,
+        phone: provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ['list']?[index]
+                .phone ??
+            '',
+        zipCode: provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ['list']?[index]
+                .zipCode ??
+            '',
+        pointLng: provider
+            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                ['list']?[index]
+            .pointLng,
+        pointLat: provider
+            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                ['list']?[index]
+            .pointLat,
       );
     } else {
       return const Center(
@@ -147,7 +186,10 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
 
     if (_scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent &&
-        provider.mainInfoMap[widget.minorId]?['list']?.length <
+        provider
+                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
+                    ?['list']
+                ?.length <
             totalDataCount) {
       provider.eitherFailureOrMainInfo(
           mainInfoParams: MainInfoParams(

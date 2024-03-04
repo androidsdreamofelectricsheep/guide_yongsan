@@ -15,8 +15,11 @@ class MainInfoProvider with ChangeNotifier {
   Map mainInfoMap = {};
   Failure? failure;
   bool loading = false;
-  final int numOfRows = 20;
+  final int numOfRows = 999;
+  String? majorId;
+  String? mediumId;
   String? minorId;
+  String? keyName;
 
   void eitherFailureOrMainInfo({required MainInfoParams mainInfoParams}) async {
     GuideYongsanRepositoryImpl repository = GuideYongsanRepositoryImpl(
@@ -26,7 +29,9 @@ class MainInfoProvider with ChangeNotifier {
             sharedPreferences: await SharedPreferences.getInstance()),
         networkInfo: NetworkInfoImpl(connectivity: Connectivity()));
 
-    minorId = mainInfoParams.minorId;
+    keyName = mainInfoParams.majorId +
+        mainInfoParams.mediumId +
+        mainInfoParams.minorId;
     loading = true;
 
     notifyListeners();
@@ -45,14 +50,13 @@ class MainInfoProvider with ChangeNotifier {
       notifyListeners();
     }, (newMainInfo) {
       if (!mainInfoMap.containsKey(mainInfoParams.minorId)) {
-        mainInfoMap[mainInfoParams.minorId] = {};
-        mainInfoMap[mainInfoParams.minorId]?['list'] = [];
+        mainInfoMap[keyName] = {};
+        mainInfoMap[keyName]?['list'] = [];
 
-        mainInfoMap[mainInfoParams.minorId]?['page'] = 1;
+        mainInfoMap[keyName]?['page'] = 1;
       }
-      mainInfoMap[mainInfoParams.minorId]?['list']?.addAll(newMainInfo);
-      mainInfoMap[mainInfoParams.minorId]?['page'] =
-          mainInfoMap[mainInfoParams.minorId]?['page'] += 1;
+      mainInfoMap[keyName]?['list']?.addAll(newMainInfo);
+      mainInfoMap[keyName]?['page'] = mainInfoMap[keyName]?['page'] += 1;
       failure = null;
       loading = false;
       notifyListeners();
