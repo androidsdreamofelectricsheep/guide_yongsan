@@ -29,6 +29,7 @@ class MainInfoScreen extends StatefulWidget {
 class _MainInfoScreenState extends State<MainInfoScreen> {
   late SharedPreferences sharedPreferences;
   bool spInit = false;
+  bool endCall = false;
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -52,22 +53,15 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
     });
 
     _scrollController.addListener(_scrollListener);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // if (context.read<MainInfoProvider>().mainInfo.isEmpty) {
-      // if (!context.read<MainInfoProvider>().loading &&
-      //     context
-      //             .read<MainInfoProvider>()
-      //             .mainInfoMap[widget.minorId]['list']
-      //             .length <
-      //         1) {
 
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<MainInfoProvider>().eitherFailureOrMainInfo(
-              mainInfoParams: MainInfoParams(
-            majorId: widget.majorId,
-            mediumId: widget.mediumId,
-            minorId: widget.minorId,
-          ));
-      // }
+            mainInfoParams: MainInfoParams(
+              majorId: widget.majorId,
+              mediumId: widget.mediumId,
+              minorId: widget.minorId,
+            ),
+          );
     });
   }
 
@@ -79,7 +73,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.subName)),
+        appBar: AppBar(title: Text(widget.subName), centerTitle: true),
         body: SafeArea(
           child:
               Consumer<MainInfoProvider>(builder: (context, provider, widget) {
@@ -104,71 +98,38 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
   }
 
   Widget buildItem(MainInfoProvider provider, int index) {
-    if (provider.mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                ?['list'] !=
-            null &&
-        index <
-            provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ?['list']
-                ?.length &&
+    if (provider.mainInfoMap[provider.keyName]?['list'] != null &&
+        index < provider.mainInfoMap[provider.keyName]?['list']?.length &&
         provider.failure == null) {
       return MainInfoWidget(
         majorId: widget.majorId,
         mediumId: widget.mediumId,
         minorId: widget.minorId,
         subName: widget.subName,
-        num: provider
-            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                ['list'][index]
-            .num
+        num: provider.mainInfoMap[provider.keyName]['list'][index].num
             .toString(),
-        companyId: provider
-            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                ['list']?[index]
-            .companyId,
+        companyId:
+            provider.mainInfoMap[provider.keyName]['list']?[index].companyId,
         companyName: provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ['list']?[index]
-                .companyName ??
+                .mainInfoMap[provider.keyName]['list']?[index].companyName ??
             '',
-        addr: provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ['list']?[index]
-                .addr ??
-            '',
-        addrDetail: provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ['list']?[index]
-                .addrDetail ??
-            '',
-        keyWord: provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ['list']?[index]
-                .keyWord ??
-            '',
-        addrId: provider
-            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                ['list']?[index]
-            .addrId,
-        phone: provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ['list']?[index]
-                .phone ??
-            '',
-        zipCode: provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ['list']?[index]
-                .zipCode ??
-            '',
-        pointLng: provider
-            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                ['list']?[index]
-            .pointLng,
-        pointLat: provider
-            .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                ['list']?[index]
-            .pointLat,
+        addr: provider.mainInfoMap[provider.keyName]['list']?[index].addr ?? '',
+        addrDetail:
+            provider.mainInfoMap[provider.keyName]['list']?[index].addrDetail ??
+                '',
+        keyWord:
+            provider.mainInfoMap[provider.keyName]['list']?[index].keyWord ??
+                '',
+        addrId: provider.mainInfoMap[provider.keyName]['list']?[index].addrId,
+        phone:
+            provider.mainInfoMap[provider.keyName]['list']?[index].phone ?? '',
+        zipCode:
+            provider.mainInfoMap[provider.keyName]['list']?[index].zipCode ??
+                '',
+        pointLng:
+            provider.mainInfoMap[provider.keyName]['list']?[index].pointLng,
+        pointLat:
+            provider.mainInfoMap[provider.keyName]['list']?[index].pointLat,
       );
     } else {
       return const Center(
@@ -186,17 +147,15 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
 
     if (_scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent &&
-        provider
-                .mainInfoMap[widget.majorId + widget.mediumId + widget.minorId]
-                    ?['list']
-                ?.length <
+        provider.mainInfoMap[provider.keyName]?['list']?.length <
             totalDataCount) {
       provider.eitherFailureOrMainInfo(
-          mainInfoParams: MainInfoParams(
-        majorId: widget.majorId,
-        mediumId: widget.mediumId,
-        minorId: widget.minorId,
-      ));
+        mainInfoParams: MainInfoParams(
+          majorId: widget.majorId,
+          mediumId: widget.mediumId,
+          minorId: widget.minorId,
+        ),
+      );
     }
   }
 }

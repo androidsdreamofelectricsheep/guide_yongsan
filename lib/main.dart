@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:guide_yongsan/core/errors/exceptions.dart';
+import 'package:guide_yongsan/core/errors/failure.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/company_detail_info_provider.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/main_info_provider.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/major_category_provider.dart';
@@ -6,7 +11,16 @@ import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/medi
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+  LocationPermission permission =
+      await Geolocator.requestPermission(); // 위치 정보 동의(현재 내 위치 보여주기 위함)
+  await NaverMapSdk.instance.initialize(
+      clientId: dotenv.get("NAVER_MAP_CLIENT_ID"),
+      onAuthFailed: (e) {
+        print(e);
+      });
   runApp(const MyApp());
 }
 

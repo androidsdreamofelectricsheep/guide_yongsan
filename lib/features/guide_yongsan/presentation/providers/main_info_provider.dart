@@ -16,9 +16,6 @@ class MainInfoProvider with ChangeNotifier {
   Failure? failure;
   bool loading = false;
   final int numOfRows = 999;
-  String? majorId;
-  String? mediumId;
-  String? minorId;
   String? keyName;
 
   void eitherFailureOrMainInfo({required MainInfoParams mainInfoParams}) async {
@@ -32,6 +29,7 @@ class MainInfoProvider with ChangeNotifier {
     keyName = mainInfoParams.majorId +
         mainInfoParams.mediumId +
         mainInfoParams.minorId;
+
     loading = true;
 
     notifyListeners();
@@ -42,14 +40,17 @@ class MainInfoProvider with ChangeNotifier {
             mediumId: mainInfoParams.mediumId,
             minorId: mainInfoParams.minorId,
             numOfRows: numOfRows,
-            pageNo: mainInfoMap[mainInfoParams.minorId]?['page'] ?? 1));
+            pageNo: mainInfoMap[keyName]?['page'] ?? 1));
+
+    print('length');
+    print(mainInfoMap[keyName]?['list']?.length);
 
     failureOrMainInfo.fold((newFailure) {
       failure = newFailure;
       loading = false;
       notifyListeners();
     }, (newMainInfo) {
-      if (!mainInfoMap.containsKey(mainInfoParams.minorId)) {
+      if (!mainInfoMap.containsKey(keyName)) {
         mainInfoMap[keyName] = {};
         mainInfoMap[keyName]?['list'] = [];
 

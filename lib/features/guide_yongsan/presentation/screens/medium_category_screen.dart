@@ -19,7 +19,7 @@ class MediumCategoryScreen extends StatelessWidget {
     mediumCategoryProvider.eitherFailureOrMediumCategorya(majorId: majorId);
 
     return Scaffold(
-        appBar: AppBar(title: Text(majorName)),
+        appBar: AppBar(title: Text(majorName), centerTitle: true),
         body: SafeArea(
           child: Consumer<MediumCategoryProvider>(
               builder: (context, provider, widget) {

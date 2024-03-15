@@ -42,6 +42,8 @@ const serverFailureMsg = 'Server failure occured';
 
 const cacheFailureMsg = 'No local data found';
 
+const likedPlaces = 'likedPlaces';
+
 // http://apis.data.go.kr/3020000/yongsanLife/companyDetailInfo?serviceKey=CGqVq4vrV65NrolvVK2t5jcZyyQ848DFr3aDmZ5ntVXBPLBfEO9vHeCSAhgUPzAg8ErX4vz2NDT6dCFclDeP2w%3D%3D&returnType=json&global=en&companyId=2021ACC91DD931EA4652B20D997E8BF27DE7
 
 const subCategory = {
@@ -250,7 +252,7 @@ const subCategory = {
     {'subId': '015', 'subName': 'Office'},
     {'subId': '016', 'subName': 'etc'},
   ],
-  'Seoin Shopping Center': [
+  'Seonin Shopping Center': [
     {'subId': '001', 'subName': 'Home Appliances'},
     {'subId': '003', 'subName': 'Imported Audio'},
     {'subId': '004', 'subName': 'Electronic Parts'},
@@ -358,15 +360,15 @@ const subCategory = {
     {'subId': '011', 'subName': 'Living Services'},
     {'subId': '012', 'subName': 'etc'},
   ],
-  'I\'park Mall': [
+  'I\'Park Mall': [
     {'subId': '001', 'subName': 'Fashion Clothing'},
-    {'subId': '003', 'subName': 'Fashion Accessories'},
-    {'subId': '005', 'subName': 'Beauty/Hair'},
-    {'subId': '006', 'subName': 'Lifestyle'},
-    {'subId': '009', 'subName': 'Culture/Leisure'},
-    {'subId': '010', 'subName': 'Cafe/Restaurant'},
-    {'subId': '011', 'subName': 'Life Amenities'},
-    {'subId': '012', 'subName': 'Service'},
+    {'subId': '002', 'subName': 'Fashion Accessories'},
+    {'subId': '003', 'subName': 'Beauty/Hair'},
+    {'subId': '004', 'subName': 'Lifestyle'},
+    {'subId': '005', 'subName': 'Culture/Leisure'},
+    {'subId': '006', 'subName': 'Cafe/Restaurant'},
+    {'subId': '007', 'subName': 'Life Amenities'},
+    {'subId': '008', 'subName': 'Service'},
   ],
   'Lotte Outlet Seoul Station': [
     {'subId': '001', 'subName': 'Fashion Accessories'},

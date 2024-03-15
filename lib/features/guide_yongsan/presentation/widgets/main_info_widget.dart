@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/company_detail_info_screen.dart';
 
 class MainInfoWidget extends StatelessWidget {
   final String majorId,
@@ -39,7 +40,16 @@ class MainInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return CompanyDetailInfoScreen(
+              companyId: companyId,
+              companyName: companyName,
+              pointLng: pointLng,
+              pointLat: pointLat,
+            );
+          }));
+        },
         // child: Column(children: [Text(num), Text(companyName)]),
         child: Column(
           mainAxisSize: MainAxisSize.max,

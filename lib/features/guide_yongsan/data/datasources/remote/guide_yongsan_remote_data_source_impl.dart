@@ -50,9 +50,7 @@ class GuideYongsanRemoteDataSourceImpl implements GuideYongsanRemoteDataSource {
 
     final url = Uri.parse(
         '$baseUrl/$mainInfo?$necessaryParams&$majorCategory=$majorId&$mediumCategory=$mediumId&$minorIdParam=$minorId&$numOfRowsParam=$numOfRows&$pageNoParam=$pageNo');
-    print('#################');
-    print(url);
-    print('#################');
+
     final response = await httpClient.get(url);
 
     List<MainInfoModel> mainInfoList = [];

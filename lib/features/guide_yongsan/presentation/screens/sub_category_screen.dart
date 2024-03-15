@@ -15,7 +15,7 @@ class SubCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(mediumName)),
+        appBar: AppBar(title: Text(mediumName), centerTitle: true),
         body: SafeArea(child: makeList(subCategory[mediumName]!)));
   }
 

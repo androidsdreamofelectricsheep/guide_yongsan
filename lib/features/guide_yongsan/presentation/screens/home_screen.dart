@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     majorCategoryProvider.eitherFailureOrMajorCategory();
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Home')),
+        appBar: AppBar(title: const Text('Home'), centerTitle: true),
         body: SafeArea(
           child: Consumer<MajorCategoryProvider>(
               builder: (context, provider, widget) {
