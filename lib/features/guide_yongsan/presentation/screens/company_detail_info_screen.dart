@@ -3,7 +3,9 @@ import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:guide_yongsan/core/constants/constants.dart';
 import 'package:guide_yongsan/core/util/asset.dart';
+import 'package:guide_yongsan/features/guide_yongsan/domain/entities/company_detail_info_entity.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/company_detail_info_provider.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/company_detail_info_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,6 +31,7 @@ class CompanyDetailInfoScreen extends StatefulWidget {
 class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
   late SharedPreferences sharedPreferences;
   late bool isLiked = false;
+  late final List<CompanyDetailInfoEntity> _companyDetailInfoList = [];
 
   Future initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
@@ -48,9 +51,8 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
   void initLoad() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       initSharedPreferences();
-      context
-          .read<CompanyDetailInfoProvider>()
-          .eitherFailureOrMediumCategorya(companyId: widget.companyId);
+      Provider.of<CompanyDetailInfoProvider>(context, listen: false)
+          .eitherFailureOrCompanyDetailInfo(companyId: widget.companyId);
     });
   }
 
@@ -88,77 +90,99 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
                     : Icons.favorite_border_rounded))
           ],
           centerTitle: true),
-      body: FutureBuilder(
-          future: getLocation(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return NaverMap(
-                options: NaverMapViewOptions(
-                  mapType: NMapType.basic,
-                  locale: const Locale('en'),
-                  activeLayerGroups: [
-                    NLayerGroup.building,
-                    NLayerGroup.transit
-                  ],
-                  initialCameraPosition: NCameraPosition(
-                    target: NLatLng(double.parse(widget.pointLat),
-                        double.parse(widget.pointLng)),
-                    // zoom: 17,
-                    zoom: 11,
-                    bearing: 0,
-                    tilt: 0,
+      body: SafeArea(
+        child: FutureBuilder(
+            future: getLocation(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return NaverMap(
+                  options: NaverMapViewOptions(
+                    mapType: NMapType.basic,
+                    locale: const Locale('en'),
+                    activeLayerGroups: [
+                      NLayerGroup.building,
+                      NLayerGroup.transit
+                    ],
+                    initialCameraPosition: NCameraPosition(
+                      target: NLatLng(double.parse(widget.pointLat),
+                          double.parse(widget.pointLng)),
+                      // zoom: 17,
+                      zoom: 11,
+                      bearing: 0,
+                      tilt: 0,
+                    ),
+                    pickTolerance: 8,
+                    extent: const NLatLngBounds(
+                      // 지도 영역을 한반도 인근으로 제한
+                      southWest: NLatLng(31.43, 122.37),
+                      northEast: NLatLng(44.35, 132.0),
+                    ),
                   ),
-                  pickTolerance: 8,
-                  extent: const NLatLngBounds(
-                    // 지도 영역을 한반도 인근으로 제한
-                    southWest: NLatLng(31.43, 122.37),
-                    northEast: NLatLng(44.35, 132.0),
-                  ),
-                ),
-                onMapReady: (controller) {
-                  final companyMarker = NMarker(
-                    id: widget.companyId,
-                    position: NLatLng(double.parse(widget.pointLat),
-                        double.parse(widget.pointLng)),
-                  );
+                  onMapReady: (controller) {
+                    final companyMarker = NMarker(
+                      id: widget.companyId,
+                      position: NLatLng(double.parse(widget.pointLat),
+                          double.parse(widget.pointLng)),
+                    );
 
-                  final userMarker = NMarker(
-                      id: 'userMarker',
-                      position: NLatLng(
-                          snapshot.data!.latitude, snapshot.data!.longitude),
-                      icon:
-                          const NOverlayImage.fromAssetImage(Asset.userMarker),
-                      size: const Size(45, 45));
+                    final userMarker = NMarker(
+                        id: 'userMarker',
+                        position: NLatLng(
+                            snapshot.data!.latitude, snapshot.data!.longitude),
+                        icon: const NOverlayImage.fromAssetImage(
+                            Asset.userMarker),
+                        size: const Size(45, 45));
 
-                  controller.addOverlayAll({companyMarker, userMarker});
+                    controller.addOverlayAll({companyMarker, userMarker});
 
-                  final companyMarkerInfoWindow = NInfoWindow.onMarker(
-                      id: companyMarker.info.id, text: widget.companyName);
-                  companyMarker.openInfoWindow(companyMarkerInfoWindow);
+                    final companyMarkerInfoWindow = NInfoWindow.onMarker(
+                        id: companyMarker.info.id, text: widget.companyName);
+                    companyMarker.openInfoWindow(companyMarkerInfoWindow);
 
-                  final userMarkerInfoWindow =
-                      NInfoWindow.onMarker(id: 'userMarker', text: 'Me');
-                  userMarker.openInfoWindow(userMarkerInfoWindow);
+                    final userMarkerInfoWindow =
+                        NInfoWindow.onMarker(id: 'userMarker', text: 'Me');
+                    userMarker.openInfoWindow(userMarkerInfoWindow);
 
-                  companyMarker.setOnTapListener((overlay) async {
-                    showModalBottomSheet(
-                        context: context,
-                        enableDrag: true,
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(20))),
-                        builder: (BuildContext context) {
-                          return const Text('까꿍');
-                        });
-                  });
-                },
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
+                    companyMarker.setOnTapListener((overlay) async {
+                      showModalBottomSheet(
+                          context: context,
+                          enableDrag: true,
+                          // isScrollControlled: true, // 바텀시트가 화면 전체를 덮어버림
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20))),
+                          builder: (BuildContext context) {
+                            return makeList();
+                          });
+                    });
+                  },
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            }),
+      ),
     );
+  }
+
+  Widget makeList() {
+    return Consumer<CompanyDetailInfoProvider>(
+        builder: (context, provider, widget) {
+      if (provider.companyDetailInfo != null) {
+        return ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: provider.companyDetailInfo?.length,
+            itemBuilder: (context, index) => CompanyDetailInfoWidget(
+                companyItem: provider.companyDetailInfo![index].companyItem,
+                companyInfo:
+                    provider.companyDetailInfo![index].companyInfo ?? '-'));
+      } else {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+    });
   }
 
   Future<Position> getLocation() async {

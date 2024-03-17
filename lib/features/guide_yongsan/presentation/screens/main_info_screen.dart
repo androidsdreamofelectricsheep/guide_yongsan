@@ -35,7 +35,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
   @override
   void initState() {
     super.initState();
-    _initLoad();
+    initLoad();
   }
 
   @override
@@ -44,7 +44,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
     super.dispose();
   }
 
-  void _initLoad() {
+  void initLoad() {
     Future.microtask(() async {
       sharedPreferences = await SharedPreferences.getInstance();
       setState(() {
@@ -82,7 +82,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
                 controller: _scrollController,
                 scrollDirection: Axis.vertical,
                 itemCount: getItemCount(provider),
-                itemBuilder: (context, index) => buildItem(provider, index),
+                itemBuilder: (context, index) => makeList(provider, index),
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 separatorBuilder: (context, index) =>
@@ -97,7 +97,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
         ));
   }
 
-  Widget buildItem(MainInfoProvider provider, int index) {
+  Widget makeList(MainInfoProvider provider, int index) {
     if (provider.mainInfoMap[provider.keyName]?['list'] != null &&
         index < provider.mainInfoMap[provider.keyName]?['list']?.length &&
         provider.failure == null) {

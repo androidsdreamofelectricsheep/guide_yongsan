@@ -19,7 +19,7 @@ class CompanyDetailInfoProvider with ChangeNotifier {
 
   CompanyDetailInfoProvider({this.companyDetailInfo, this.failure});
 
-  void eitherFailureOrMediumCategorya({required String companyId}) async {
+  void eitherFailureOrCompanyDetailInfo({required String companyId}) async {
     GuideYongsanRepositoryImpl repository = GuideYongsanRepositoryImpl(
         remoteDataSource:
             GuideYongsanRemoteDataSourceImpl(httpClient: http.Client()),

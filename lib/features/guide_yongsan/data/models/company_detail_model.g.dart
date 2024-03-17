@@ -11,7 +11,7 @@ CompanyDetailInfoModel _$CompanyDetailModelFromJson(
     CompanyDetailInfoModel(
       companyItemId: json['companyItemId'] as int,
       companyItem: json['companyItem'] as String,
-      companyInfo: json['companyInfo'] as String,
+      companyInfo: json['companyInfo'] as String?,
     );
 
 Map<String, dynamic> _$CompanyDetailModelToJson(

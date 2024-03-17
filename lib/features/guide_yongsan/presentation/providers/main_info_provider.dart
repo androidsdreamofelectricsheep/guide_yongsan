@@ -15,7 +15,7 @@ class MainInfoProvider with ChangeNotifier {
   Map mainInfoMap = {};
   Failure? failure;
   bool loading = false;
-  final int numOfRows = 999;
+  final int numOfRows = 20;
   String? keyName;
 
   void eitherFailureOrMainInfo({required MainInfoParams mainInfoParams}) async {
@@ -41,9 +41,6 @@ class MainInfoProvider with ChangeNotifier {
             minorId: mainInfoParams.minorId,
             numOfRows: numOfRows,
             pageNo: mainInfoMap[keyName]?['page'] ?? 1));
-
-    print('length');
-    print(mainInfoMap[keyName]?['list']?.length);
 
     failureOrMainInfo.fold((newFailure) {
       failure = newFailure;
