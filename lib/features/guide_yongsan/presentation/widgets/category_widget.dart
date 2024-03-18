@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:guide_yongsan/core/params/params.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/main_info_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/medium_category_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/sub_category_screen.dart';
@@ -40,37 +42,33 @@ class CategoryWidget extends StatelessWidget {
 
     return GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            if (majorId != null && majorName != null) {
-              return MediumCategoryScreen(
-                majorId: majorId!,
-                majorName: majorName!,
-              );
-            }
-            if (majorId != null &&
-                mediumId != null &&
-                mediumName != null &&
-                subId == null &&
-                subName == null) {
-              return SubCategoryScreen(
-                  majorId: majorId!,
-                  mediumId: mediumId!,
-                  mediumName: mediumName!);
-            }
-            if (majorId != null &&
-                mediumId != null &&
-                subId != null &&
-                subName != null) {
-              return MainInfoScreen(
-                majorId: majorId!,
-                mediumId: mediumId!,
-                minorId: subId!,
-                subName: subName!,
-              );
-            }
+          Map extra = {};
 
-            return const Center(child: CircularProgressIndicator());
-          }));
+          if (majorId != null && majorName != null) {
+            extra['majorId'] = majorId;
+            extra['majorName'] = majorName;
+            context.pushNamed(MediumCategoryScreen.routeName, extra: extra);
+          }
+          if (majorId != null &&
+              mediumId != null &&
+              mediumName != null &&
+              subId == null &&
+              subName == null) {
+            extra['majorId'] = majorId;
+            extra['mediumId'] = mediumId;
+            extra['mediumName'] = mediumName;
+            context.pushNamed(SubCategoryScreen.routeName, extra: extra);
+          }
+          if (majorId != null &&
+              mediumId != null &&
+              subId != null &&
+              subName != null) {
+            extra['majorId'] = majorId;
+            extra['mediumId'] = mediumId;
+            extra['minorId'] = subId;
+            extra['subName'] = subName;
+            context.pushNamed(MainInfoScreen.routeName, extra: extra);
+          }
         },
         child: Column(children: [Text(name), Text(id)]));
   }

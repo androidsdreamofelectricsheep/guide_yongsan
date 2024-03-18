@@ -4,6 +4,9 @@ import 'package:guide_yongsan/core/constants/constants.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/category_widget.dart';
 
 class SubCategoryScreen extends StatelessWidget {
+  static const routeUrl = '/sub_category';
+  static const routeName = 'subCategory';
+
   final String majorId, mediumId, mediumName;
 
   const SubCategoryScreen(

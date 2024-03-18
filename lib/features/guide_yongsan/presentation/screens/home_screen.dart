@@ -6,6 +6,9 @@ import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/catego
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeUrl = '/';
+  static const routeName = 'home';
+
   const HomeScreen({super.key});
 
   @override
@@ -15,17 +18,18 @@ class HomeScreen extends StatelessWidget {
     majorCategoryProvider.eitherFailureOrMajorCategory();
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Home'), centerTitle: true),
-        body: SafeArea(
-          child: Consumer<MajorCategoryProvider>(
-              builder: (context, provider, widget) {
-            if (provider.majorCategory != null) {
-              return makeList(provider.majorCategory!);
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
-        ));
+      appBar: AppBar(title: const Text('Home'), centerTitle: true),
+      body: SafeArea(
+        child: Consumer<MajorCategoryProvider>(
+            builder: (context, provider, widget) {
+          if (provider.majorCategory != null) {
+            return makeList(provider.majorCategory!);
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        }),
+      ),
+    );
   }
 
   GridView makeList(List<MarjorCategoryEntity> majorCategoryList) {

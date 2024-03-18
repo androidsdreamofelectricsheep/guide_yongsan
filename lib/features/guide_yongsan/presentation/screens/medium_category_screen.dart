@@ -8,6 +8,9 @@ import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/catego
 import 'package:provider/provider.dart';
 
 class MediumCategoryScreen extends StatelessWidget {
+  static const routeUrl = '/medium_category';
+  static const routeName = 'mediumCategory';
+
   final String majorId, majorName;
   const MediumCategoryScreen(
       {super.key, required this.majorId, required this.majorName});

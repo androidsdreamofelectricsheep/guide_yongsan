@@ -9,6 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainInfoScreen extends StatefulWidget {
+  static const routeUrl = '/main_info';
+  static const routeName = 'mainInfo';
+
   final String majorId;
   final String mediumId;
   final String minorId;

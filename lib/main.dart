@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:guide_yongsan/core/errors/exceptions.dart';
-import 'package:guide_yongsan/core/errors/failure.dart';
+
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/company_detail_info_provider.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/main_info_provider.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/major_category_provider.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/medium_category_provider.dart';
-import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/home_screen.dart';
+
+import 'package:guide_yongsan/route/router.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -38,13 +38,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => CompanyDetailInfoProvider()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Guide Yongsan',
         theme: ThemeData(
           useMaterial3: false,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade800),
         ),
-        home: const HomeScreen(),
+        routerConfig: router,
       ),
     );
   }

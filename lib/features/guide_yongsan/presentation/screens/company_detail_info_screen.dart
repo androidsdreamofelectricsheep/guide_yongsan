@@ -3,13 +3,15 @@ import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:guide_yongsan/core/constants/constants.dart';
 import 'package:guide_yongsan/core/util/asset.dart';
-import 'package:guide_yongsan/features/guide_yongsan/domain/entities/company_detail_info_entity.dart';
+
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/company_detail_info_provider.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/company_detail_info_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CompanyDetailInfoScreen extends StatefulWidget {
+  static const routeUrl = '/company_detail_info';
+  static const routeName = 'companyDetailInfo';
   final String companyId;
   final String companyName;
   final String pointLng;
@@ -31,7 +33,6 @@ class CompanyDetailInfoScreen extends StatefulWidget {
 class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
   late SharedPreferences sharedPreferences;
   late bool isLiked = false;
-  late final List<CompanyDetailInfoEntity> _companyDetailInfoList = [];
 
   Future initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
