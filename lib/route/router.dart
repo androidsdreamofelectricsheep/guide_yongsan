@@ -63,10 +63,12 @@ final router = GoRouter(initialLocation: '/', routes: [
             builder: (context, state) {
               final extra = state.extra as Map;
               return CompanyDetailInfoScreen(
-                  companyId: extra['companyId'],
-                  companyName: extra['companyName'],
-                  pointLng: extra['pointLng'],
-                  pointLat: extra['pointLat']);
+                companyId: extra['companyId'],
+                companyName: extra['companyName'],
+                pointLng: extra['pointLng'],
+                pointLat: extra['pointLat'],
+                keyWord: extra['keyWord'],
+              );
             }),
       ])
 ]);

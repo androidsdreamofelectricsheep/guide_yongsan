@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
@@ -16,6 +18,7 @@ class CompanyDetailInfoScreen extends StatefulWidget {
   final String companyName;
   final String pointLng;
   final String pointLat;
+  final String keyWord;
 
   const CompanyDetailInfoScreen({
     super.key,
@@ -23,6 +26,7 @@ class CompanyDetailInfoScreen extends StatefulWidget {
     required this.companyName,
     required this.pointLng,
     required this.pointLat,
+    required this.keyWord,
   });
 
   @override
@@ -34,18 +38,36 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
   late SharedPreferences sharedPreferences;
   late bool isLiked = false;
 
+  // Future initSharedPreferences() async {
+  //   sharedPreferences = await SharedPreferences.getInstance();
+
+  //   final likedPlacesList = sharedPreferences.getStringList(likedPlaces);
+  //   if (likedPlacesList != null) {
+  //     if (likedPlacesList.contains(widget.companyId)) {
+  //       setState(() {
+  //         isLiked = true;
+  //       });
+  //     }
+  //   } else {
+  //     await sharedPreferences.setStringList(likedPlaces, []);
+  //   }
+  // }
+
   Future initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
 
     final likedPlacesList = sharedPreferences.getStringList(likedPlaces);
     if (likedPlacesList != null) {
-      if (likedPlacesList.contains(widget.companyId)) {
-        setState(() {
-          isLiked = true;
-        });
+      for (var likedPlace in likedPlacesList) {
+        Map decodedLikedPlace = jsonDecode(likedPlace);
+        print(decodedLikedPlace);
+
+        if (decodedLikedPlace['companyId'] == widget.companyId) {
+          setState(() {
+            isLiked = true;
+          });
+        }
       }
-    } else {
-      await sharedPreferences.setStringList(likedPlaces, []);
     }
   }
 
@@ -65,11 +87,35 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
 
   onHeartTap() async {
     final likedPlacesList = sharedPreferences.getStringList(likedPlaces);
+    Map likedPlaceInfo = {};
+
+    // if (likedPlacesList != null) {
+    //   if (isLiked) {
+    //     likedPlacesList.remove(widget.companyId);
+    //   } else {
+    //     likedPlacesList.add(widget.companyId);
+    //   }
+    //   await sharedPreferences.setStringList(likedPlaces, likedPlacesList);
+    //   setState(() {
+    //     isLiked = !isLiked;
+    //   });
+    // }
+
     if (likedPlacesList != null) {
       if (isLiked) {
-        likedPlacesList.remove(widget.companyId);
+        // 이미 좋아요인 상태면 좋아요 해제(리스트에서 해당 장소 제거)
+        // likedPlacesList.remove(widget.companyId);
+
+        likedPlacesList.removeWhere(
+            (element) => jsonDecode(element)['companyId'] == widget.companyId);
       } else {
-        likedPlacesList.add(widget.companyId);
+        likedPlaceInfo['companyId'] = widget.companyId;
+        likedPlaceInfo['companyName'] = widget.companyName;
+        likedPlaceInfo['pointLng'] = widget.pointLng;
+        likedPlaceInfo['pointLat'] = widget.pointLat;
+        likedPlaceInfo['keyWord'] = widget.keyWord;
+
+        likedPlacesList.add(jsonEncode(likedPlaceInfo));
       }
       await sharedPreferences.setStringList(likedPlaces, likedPlacesList);
       setState(() {

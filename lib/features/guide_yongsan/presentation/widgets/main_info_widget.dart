@@ -47,6 +47,7 @@ class MainInfoWidget extends StatelessWidget {
           extra['companyName'] = companyName;
           extra['pointLng'] = pointLng;
           extra['pointLat'] = pointLat;
+          extra['keyWord'] = keyWord;
           context.pushNamed(CompanyDetailInfoScreen.routeName, extra: extra);
         },
         child: Column(

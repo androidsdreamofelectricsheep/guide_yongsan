@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
+  // TODO: 위치 정보 동의하지 않았을 때 상황
   LocationPermission permission =
       await Geolocator.requestPermission(); // 위치 정보 동의(현재 내 위치 보여주기 위함)
   await NaverMapSdk.instance.initialize(

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:guide_yongsan/core/params/params.dart';
+
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/main_info_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/medium_category_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/sub_category_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class CategoryWidget extends StatelessWidget {
   final String? majorId;
