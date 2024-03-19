@@ -19,6 +19,7 @@ class CompanyDetailInfoScreen extends StatefulWidget {
   final String pointLng;
   final String pointLat;
   final String keyWord;
+  final String addr;
 
   const CompanyDetailInfoScreen({
     super.key,
@@ -27,6 +28,7 @@ class CompanyDetailInfoScreen extends StatefulWidget {
     required this.pointLng,
     required this.pointLat,
     required this.keyWord,
+    required this.addr,
   });
 
   @override
@@ -37,21 +39,6 @@ class CompanyDetailInfoScreen extends StatefulWidget {
 class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
   late SharedPreferences sharedPreferences;
   late bool isLiked = false;
-
-  // Future initSharedPreferences() async {
-  //   sharedPreferences = await SharedPreferences.getInstance();
-
-  //   final likedPlacesList = sharedPreferences.getStringList(likedPlaces);
-  //   if (likedPlacesList != null) {
-  //     if (likedPlacesList.contains(widget.companyId)) {
-  //       setState(() {
-  //         isLiked = true;
-  //       });
-  //     }
-  //   } else {
-  //     await sharedPreferences.setStringList(likedPlaces, []);
-  //   }
-  // }
 
   Future initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
@@ -89,22 +76,9 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
     final likedPlacesList = sharedPreferences.getStringList(likedPlaces);
     Map likedPlaceInfo = {};
 
-    // if (likedPlacesList != null) {
-    //   if (isLiked) {
-    //     likedPlacesList.remove(widget.companyId);
-    //   } else {
-    //     likedPlacesList.add(widget.companyId);
-    //   }
-    //   await sharedPreferences.setStringList(likedPlaces, likedPlacesList);
-    //   setState(() {
-    //     isLiked = !isLiked;
-    //   });
-    // }
-
     if (likedPlacesList != null) {
       if (isLiked) {
         // 이미 좋아요인 상태면 좋아요 해제(리스트에서 해당 장소 제거)
-        // likedPlacesList.remove(widget.companyId);
 
         likedPlacesList.removeWhere(
             (element) => jsonDecode(element)['companyId'] == widget.companyId);
@@ -114,6 +88,7 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
         likedPlaceInfo['pointLng'] = widget.pointLng;
         likedPlaceInfo['pointLat'] = widget.pointLat;
         likedPlaceInfo['keyWord'] = widget.keyWord;
+        likedPlaceInfo['addr'] = widget.addr;
 
         likedPlacesList.add(jsonEncode(likedPlaceInfo));
       }
