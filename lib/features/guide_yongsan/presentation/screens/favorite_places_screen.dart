@@ -55,6 +55,10 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
   }
 
   onSelectAllPlaces() async {
+    if (favoritePlaces.isEmpty) {
+      return;
+    }
+
     // 전체 선택/해제
     setState(() {
       removePlaceList.clear(); // 중복 방지 리스트 비우기
@@ -74,36 +78,11 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
   }
 
   onDeleteSelectedPlaces() async {
-    // TODO: 팝업 'Are you sure to delete selected place(s)?'
     if (removePlaceList.isEmpty) {
       return;
     }
 
-    List temp = [...removePlaceList];
-
-    for (var removeId in removePlaceList) {
-      setState(() {
-        favoritePlaces
-            .removeWhere((element) => element['companyId'] == removeId);
-        temp.remove(removeId);
-      });
-    }
-
-    removePlaceList = temp;
-
-    print('removeList5');
-    print(removePlaceList);
-
-    print('favoritePlaces');
-    print(favoritePlaces);
-    print(favoritePlaces.length);
-
-    if (favoritePlaces.isNotEmpty) {
-      // 저장한 장소(좋아요한 장소) 삭제 후 모바일 저장소(로컬)에 변경 사항 업데이트
-      final encodedLikedPlaceList =
-          favoritePlaces.map((e) => jsonEncode(e)).toList();
-      await sharedPreferences.setStringList(likedPlaces, encodedLikedPlaceList);
-    }
+    deletionModal();
   }
 
   @override
@@ -184,5 +163,54 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
                     ))
           ]),
         ));
+  }
+
+  deletionModal() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: const Text('Are you sure to delete selected place(s)?'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel')),
+              TextButton(
+                  onPressed: () {
+                    deleteSelectedPlaces();
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Delete'))
+            ],
+          );
+        });
+  }
+
+  deleteSelectedPlaces() async {
+    List temp = [...removePlaceList];
+
+    for (var removeId in removePlaceList) {
+      setState(() {
+        favoritePlaces
+            .removeWhere((element) => element['companyId'] == removeId);
+        temp.remove(removeId);
+      });
+    }
+
+    removePlaceList = temp;
+
+    print('removeList5');
+    print(removePlaceList);
+
+    print('favoritePlaces');
+    print(favoritePlaces);
+    print(favoritePlaces.length);
+
+    // 저장한 장소(좋아요한 장소) 삭제 후 모바일 저장소(로컬)에 변경 사항 업데이트
+    final encodedLikedPlaceList =
+        favoritePlaces.map((e) => jsonEncode(e)).toList();
+    await sharedPreferences.setStringList(likedPlaces, encodedLikedPlaceList);
   }
 }
