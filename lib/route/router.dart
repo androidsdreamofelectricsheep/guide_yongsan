@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/company_detail_info_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/favorite_places_screen.dart';
@@ -7,6 +8,7 @@ import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/medium
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/menu_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/sub_category_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/bottom_navigation_bar_widget.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/menu_widget.dart';
 
 final router = GoRouter(initialLocation: '/', routes: [
   ShellRoute(
@@ -69,6 +71,13 @@ final router = GoRouter(initialLocation: '/', routes: [
                   pointLat: extra['pointLat'],
                   keyWord: extra['keyWord'],
                   addr: extra['addr']);
+            }),
+        GoRoute(
+            name: MenuWidget.routeName,
+            path: '/menu_widget/:markdown',
+            builder: (context, state) {
+              final markdown = state.pathParameters['markdown']!;
+              return MenuWidget(markdown: markdown);
             }),
       ])
 ]);

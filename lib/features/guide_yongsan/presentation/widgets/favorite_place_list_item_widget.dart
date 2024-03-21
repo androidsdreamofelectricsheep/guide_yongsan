@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/company_detail_info_screen.dart';
 
 class FavoritePlaceListItemWidget extends StatefulWidget {
   final String companyId, companyName, keyWord, pointLng, pointLat, addr;
@@ -23,8 +25,6 @@ class FavoritePlaceListItemWidget extends StatefulWidget {
 
 class _FavoritePlaceListItemWidgetState
     extends State<FavoritePlaceListItemWidget> {
-  // bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,12 +41,25 @@ class _FavoritePlaceListItemWidgetState
                     ? Icons.check_circle_rounded
                     : Icons.check_circle_outline_rounded)),
             Flexible(
-              child: Column(
-                children: [
-                  Text(widget.companyName),
-                  Text(widget.addr),
-                  Text(widget.keyWord)
-                ],
+              child: InkWell(
+                onTap: () {
+                  Map extra = {};
+                  extra['companyId'] = widget.companyId;
+                  extra['companyName'] = widget.companyName;
+                  extra['pointLng'] = widget.pointLng;
+                  extra['pointLat'] = widget.pointLat;
+                  extra['keyWord'] = widget.keyWord;
+                  extra['addr'] = widget.addr;
+                  context.goNamed(CompanyDetailInfoScreen.routeName,
+                      extra: extra);
+                },
+                child: Column(
+                  children: [
+                    Text(widget.companyName),
+                    Text(widget.addr),
+                    Text(widget.keyWord)
+                  ],
+                ),
               ),
             )
           ]),

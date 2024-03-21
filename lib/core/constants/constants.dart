@@ -1,3 +1,5 @@
+import 'package:guide_yongsan/core/util/asset.dart';
+
 const baseUrl = 'http://apis.data.go.kr/3020000/yongsanLife';
 
 const serviceKey =
@@ -43,6 +45,13 @@ const serverFailureMsg = 'Server failure occured';
 const cacheFailureMsg = 'No local data found';
 
 const likedPlaces = 'likedPlaces';
+
+// const menuList = ['Terms & Conditions', 'Privacy Policy', 'Contact'];
+const menuList = [
+  {'mname': 'Terms & Conditions', 'markdown': Asset.terms},
+  {'mname': 'Privacy Policy', 'markdown': Asset.privacy},
+  {'mname': 'Contact', 'markdown': ''}
+];
 
 // http://apis.data.go.kr/3020000/yongsanLife/companyDetailInfo?serviceKey=CGqVq4vrV65NrolvVK2t5jcZyyQ848DFr3aDmZ5ntVXBPLBfEO9vHeCSAhgUPzAg8ErX4vz2NDT6dCFclDeP2w%3D%3D&returnType=json&global=en&companyId=2021ACC91DD931EA4652B20D997E8BF27DE7
 
