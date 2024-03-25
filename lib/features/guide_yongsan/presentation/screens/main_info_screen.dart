@@ -38,6 +38,7 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
   @override
   void initState() {
     super.initState();
+
     initLoad();
   }
 
