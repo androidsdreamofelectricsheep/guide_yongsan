@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:guide_yongsan/core/params/params.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/layout/base_layout.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/main_info_provider.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/main_info_widget.dart';
@@ -76,29 +77,25 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(widget.subName), centerTitle: true),
-        body: SafeArea(
-          child:
-              Consumer<MainInfoProvider>(builder: (context, provider, widget) {
-            if (provider.mainInfoMap[provider.keyName]?['list']! != null) {
-              return ListView.separated(
-                controller: _scrollController,
-                scrollDirection: Axis.vertical,
-                itemCount: getItemCount(provider),
-                itemBuilder: (context, index) => makeList(provider, index),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 20),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
-        ));
+    return BaseLayout(
+      appBarTitle: widget.subName,
+      child: Consumer<MainInfoProvider>(builder: (context, provider, widget) {
+        if (provider.mainInfoMap[provider.keyName]?['list']! != null) {
+          return ListView.separated(
+            controller: _scrollController,
+            scrollDirection: Axis.vertical,
+            itemCount: getItemCount(provider),
+            itemBuilder: (context, index) => makeList(provider, index),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            separatorBuilder: (context, index) => const SizedBox(height: 20),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      }),
+    );
   }
 
   Widget makeList(MainInfoProvider provider, int index) {

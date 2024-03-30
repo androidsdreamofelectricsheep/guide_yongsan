@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/layout/base_layout.dart';
 
 class MenuWidget extends StatelessWidget {
   static const routeName = 'menu_widget';
@@ -10,17 +11,22 @@ class MenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: rootBundle.loadString(markdown),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Markdown(data: snapshot.data!);
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
+    return BaseLayout(
+      appBarTitle: '',
+      appBarBackgroundColor: Colors.transparent,
+      appBarleading: const BackButton(color: Colors.grey),
+      child: FutureBuilder(
+        future: rootBundle.loadString(markdown),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Markdown(data: snapshot.data!);
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 }

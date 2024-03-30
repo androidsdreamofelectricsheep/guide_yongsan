@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guide_yongsan/features/guide_yongsan/domain/entities/marjor_category_entity.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/layout/base_layout.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/major_category_provider.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/category_widget.dart';
@@ -17,18 +18,16 @@ class HomeScreen extends StatelessWidget {
         Provider.of<MajorCategoryProvider>(context, listen: false);
     majorCategoryProvider.eitherFailureOrMajorCategory();
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home'), centerTitle: true),
-      body: SafeArea(
-        child: Consumer<MajorCategoryProvider>(
-            builder: (context, provider, widget) {
-          if (provider.majorCategory != null) {
-            return makeList(provider.majorCategory!);
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        }),
-      ),
+    return BaseLayout(
+      appBarTitle: 'Home',
+      child:
+          Consumer<MajorCategoryProvider>(builder: (context, provider, widget) {
+        if (provider.majorCategory != null) {
+          return makeList(provider.majorCategory!);
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      }),
     );
   }
 

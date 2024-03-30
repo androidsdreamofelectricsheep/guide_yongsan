@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:guide_yongsan/core/util/permissions.dart';
@@ -10,7 +10,6 @@ import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/majo
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/medium_category_provider.dart';
 
 import 'package:guide_yongsan/route/router.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -24,7 +23,6 @@ void main() async {
       });
 
   runApp(const MaterialApp(home: MyApp()));
-  // runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -45,10 +43,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // Permissions.checkLoactionPermission(context);
-
-    // showChangePermissionModal();
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => MajorCategoryProvider()),
@@ -66,32 +60,5 @@ class _MyAppState extends State<MyApp> {
         routerConfig: router,
       ),
     );
-  }
-
-  showChangePermissionModal() async {
-    // Permissions.isLoactionPermissionAllowed().then((value) => value
-    //     ? null
-    //     : showDialog(
-    //         context: context,
-    //         builder: (BuildContext context) {
-    //           return AlertDialog(
-    //             content: const Text(
-    //                 'If location permission is not allowed, GuideYongsan is not available. Please allow to use GuideYongsan.'),
-    //             actions: [
-    //               TextButton(
-    //                   onPressed: () {
-    //                     // Navigator.of(context).pop();
-    //                     SystemNavigator.pop();
-    //                   },
-    //                   child: const Text('Close')),
-    //               TextButton(
-    //                   onPressed: () {
-    //                     openAppSettings();
-    //                     Navigator.of(context).pop();
-    //                   },
-    //                   child: const Text('To allow')),
-    //             ],
-    //           );
-    //         }));
   }
 }

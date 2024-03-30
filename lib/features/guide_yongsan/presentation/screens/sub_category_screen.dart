@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guide_yongsan/core/constants/constants.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/layout/base_layout.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/category_widget.dart';
 
@@ -17,9 +18,8 @@ class SubCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(mediumName), centerTitle: true),
-        body: SafeArea(child: makeList(subCategory[mediumName]!)));
+    return BaseLayout(
+        appBarTitle: mediumName, child: makeList(subCategory[mediumName]!));
   }
 
   GridView makeList(List<Map<String, String>> subCategoryList) {

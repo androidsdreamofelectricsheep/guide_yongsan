@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/domain/entities/medium_category_entity.dart';
+import 'package:guide_yongsan/features/guide_yongsan/presentation/layout/base_layout.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/medium_category_provider.dart';
 
@@ -21,18 +22,17 @@ class MediumCategoryScreen extends StatelessWidget {
         Provider.of<MediumCategoryProvider>(context, listen: false);
     mediumCategoryProvider.eitherFailureOrMediumCategorya(majorId: majorId);
 
-    return Scaffold(
-        appBar: AppBar(title: Text(majorName), centerTitle: true),
-        body: SafeArea(
-          child: Consumer<MediumCategoryProvider>(
-              builder: (context, provider, widget) {
-            if (provider.mediumCategory != null) {
-              return makeList(provider.mediumCategory!);
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
-        ));
+    return BaseLayout(
+      appBarTitle: majorName,
+      child: Consumer<MediumCategoryProvider>(
+          builder: (context, provider, widget) {
+        if (provider.mediumCategory != null) {
+          return makeList(provider.mediumCategory!);
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      }),
+    );
   }
 
   GridView makeList(List<MediumCategoryEntity> mediumCategoryList) {
