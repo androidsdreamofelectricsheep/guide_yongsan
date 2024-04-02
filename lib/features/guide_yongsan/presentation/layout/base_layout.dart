@@ -19,7 +19,10 @@ class BaseLayout extends StatelessWidget {
     return Scaffold(
         appBar: renderAppBar(),
         body: SafeArea(
-          child: child,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: child,
+          ),
         ));
   }
 
@@ -27,7 +30,9 @@ class BaseLayout extends StatelessWidget {
     return appBarTitle != null
         ? AppBar(
             centerTitle: true,
-            title: Text(appBarTitle!),
+            title: Text(appBarTitle!,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
             actions: appBarActions,
             backgroundColor: appBarBackgroundColor,
             elevation: 0.0,

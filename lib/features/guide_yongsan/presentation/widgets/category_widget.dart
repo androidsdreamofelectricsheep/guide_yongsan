@@ -69,6 +69,23 @@ class CategoryWidget extends StatelessWidget {
             context.pushNamed(MainInfoScreen.routeName, extra: extra);
           }
         },
-        child: Column(children: [Text(name), Text(id)]));
+        child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+            ),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                    ),
+                  )
+                ])));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guide_yongsan/core/constants/constants.dart';
+import 'package:guide_yongsan/core/util/build_grid_view.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/layout/base_layout.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/presentation/widgets/category_widget.dart';
@@ -23,10 +24,13 @@ class SubCategoryScreen extends StatelessWidget {
   }
 
   GridView makeList(List<Map<String, String>> subCategoryList) {
-    return GridView.builder(
+    return buildGirdView(
         itemCount: subCategoryList.length,
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 3.0, // 아이템 크기 비율
+            crossAxisSpacing: 3.0,
+            mainAxisSpacing: 3.0),
         itemBuilder: (context, index) {
           var subCategory = subCategoryList[index];
 

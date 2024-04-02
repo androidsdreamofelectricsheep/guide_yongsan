@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guide_yongsan/core/util/build_grid_view.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/domain/entities/medium_category_entity.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/layout/base_layout.dart';
@@ -36,10 +37,13 @@ class MediumCategoryScreen extends StatelessWidget {
   }
 
   GridView makeList(List<MediumCategoryEntity> mediumCategoryList) {
-    return GridView.builder(
+    return buildGirdView(
         itemCount: mediumCategoryList.length,
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 3.0,
+            crossAxisSpacing: 3.0,
+            mainAxisSpacing: 3.0),
         itemBuilder: (context, index) {
           var mediumCategory = mediumCategoryList[index];
           return CategoryWidget(
@@ -50,6 +54,7 @@ class MediumCategoryScreen extends StatelessWidget {
             subId: null,
             subName: null,
           );
-        });
+        },
+        physics: const NeverScrollableScrollPhysics());
   }
 }
