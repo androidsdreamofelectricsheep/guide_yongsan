@@ -18,34 +18,39 @@ class MenuScreen extends StatelessWidget {
           scrollDirection: Axis.vertical,
           itemCount: menuList.length,
           itemBuilder: (context, index) => ListTile(
+                shape: const Border(
+                    bottom: BorderSide(width: 1, color: Colors.grey)),
                 title: Text(menuList[index]['mname']!),
-                trailing: IconButton(
-                    onPressed: () async {
-                      if (index < 2) {
-                        // 약관
-                        context.pushNamed(MenuWidget.routeName,
-                            pathParameters: {
-                              'markdown': menuList[index]['markdown']!
-                            });
-                      } else {
-                        print('contact');
-                        // 문의
-                        Uri uri = Uri.parse(
-                          'mailto:n01077202@humbermail.ca?subject=Hello&body=Good day!',
-                        );
+                trailing: Transform.translate(
+                  offset: const Offset(0, 0), // 꺽쇠 아이콘 측면, 가장자리로 붙이기
+                  child: IconButton(
+                      onPressed: () async {
+                        if (index < 2) {
+                          // 약관
+                          context.pushNamed(MenuWidget.routeName,
+                              pathParameters: {
+                                'markdown': menuList[index]['markdown']!
+                              });
+                        } else {
+                          print('contact');
+                          // 문의
+                          Uri uri = Uri.parse(
+                            'mailto:n01077202@humbermail.ca?subject=Hello&body=Good day!',
+                          );
 
-                        context.goNamed(MenuScreen
-                            .routeName); // 메일 작성화면으로 넘어간 후 앱으로 돌아왔을 때 아무것도 없는 화면(뒤로가기 없음) 방지
+                          context.goNamed(MenuScreen
+                              .routeName); // 메일 작성화면으로 넘어간 후 앱으로 돌아왔을 때 아무것도 없는 화면(뒤로가기 없음) 방지
 
-                        try {
-                          await launcher.launchUrl(uri);
-                        } catch (e) {
-                          print('conatct exception');
-                          print(e);
+                          try {
+                            await launcher.launchUrl(uri);
+                          } catch (e) {
+                            print('conatct exception');
+                            print(e);
+                          }
                         }
-                      }
-                    },
-                    icon: const Icon(Icons.arrow_forward_ios)),
+                      },
+                      icon: const Icon(Icons.arrow_forward_ios)),
+                ),
               )),
     );
   }

@@ -15,11 +15,15 @@ class CompanyDetailInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(companyItem),
+              Text(companyItem,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w700, fontSize: 18)),
               const SizedBox(
                 height: 10,
               ),
-              Text(companyInfo),
+              Text(companyInfo,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 16)),
             ]),
       ),
     );

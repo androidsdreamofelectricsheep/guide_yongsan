@@ -86,7 +86,6 @@ class _MainInfoScreenState extends State<MainInfoScreen> {
             scrollDirection: Axis.vertical,
             itemCount: getItemCount(provider),
             itemBuilder: (context, index) => makeList(provider, index),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             separatorBuilder: (context, index) => const SizedBox(height: 20),
           );
         } else {

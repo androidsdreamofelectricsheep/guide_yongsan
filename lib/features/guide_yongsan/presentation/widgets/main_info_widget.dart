@@ -51,11 +51,48 @@ class MainInfoWidget extends StatelessWidget {
           extra['addr'] = addr;
           context.pushNamed(CompanyDetailInfoScreen.routeName, extra: extra);
         },
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Text(num), Text(companyName), Text(addr), Text(keyWord)],
+        child: Container(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(width: 1, color: Colors.grey)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 15),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(children: [
+                  const Icon(Icons.gite_rounded),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: Text(
+                      companyName,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                  )
+                ]),
+                Row(children: [
+                  const Icon(Icons.location_on),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: Text(
+                      addr,
+                    ),
+                  )
+                ]),
+                Row(children: [
+                  const Icon(Icons.tag_rounded),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: Text(
+                      keyWord,
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  )
+                ]),
+              ],
+            ),
+          ),
         ));
   }
 }

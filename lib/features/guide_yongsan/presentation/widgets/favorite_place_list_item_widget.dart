@@ -28,41 +28,53 @@ class _FavoritePlaceListItemWidgetState
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-          child: Row(children: [
-            IconButton(
-                onPressed: widget.onChange,
-                icon: Icon(widget.value
-                    ? Icons.check_circle_rounded
-                    : Icons.check_circle_outline_rounded)),
-            Flexible(
-              child: InkWell(
-                onTap: () {
-                  Map extra = {};
-                  extra['companyId'] = widget.companyId;
-                  extra['companyName'] = widget.companyName;
-                  extra['pointLng'] = widget.pointLng;
-                  extra['pointLat'] = widget.pointLat;
-                  extra['keyWord'] = widget.keyWord;
-                  extra['addr'] = widget.addr;
-                  context.goNamed(CompanyDetailInfoScreen.routeName,
-                      extra: extra);
-                },
-                child: Column(
-                  children: [
-                    Text(widget.companyName),
-                    Text(widget.addr),
-                    Text(widget.keyWord)
-                  ],
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(width: 1, color: Colors.grey)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child:
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              IconButton(
+                  // visualDensity: const VisualDensity(
+                  //   // Transform.translate과 Offset(-4, 0)동일
+                  //   horizontal: -4,
+                  // ),
+                  onPressed: widget.onChange,
+                  icon: Icon(
+                      widget.value
+                          ? Icons.check_circle_rounded
+                          : Icons.check_circle_outline_rounded,
+                      color: Theme.of(context).primaryColor)),
+              Flexible(
+                child: InkWell(
+                  onTap: () {
+                    Map extra = {};
+                    extra['companyId'] = widget.companyId;
+                    extra['companyName'] = widget.companyName;
+                    extra['pointLng'] = widget.pointLng;
+                    extra['pointLat'] = widget.pointLat;
+                    extra['keyWord'] = widget.keyWord;
+                    extra['addr'] = widget.addr;
+                    context.goNamed(CompanyDetailInfoScreen.routeName,
+                        extra: extra);
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.companyName,
+                      ),
+                      Text(widget.addr),
+                      Text(widget.keyWord)
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ]),
+              )
+            ]),
+          ),
         ),
       ],
     );
