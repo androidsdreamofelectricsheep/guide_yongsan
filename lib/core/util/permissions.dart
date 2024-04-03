@@ -9,22 +9,16 @@ class Permissions {
     var status = await Permission.location.status;
 
     await Permission.location.request();
-    print('location permisssion');
-    print(status);
 
     if (status.isDenied) {
-      print('not allowed');
       await Permission.location.request();
     }
 
     if (status.isGranted || status.isLimited) {
-      print('granted');
       await Geolocator.isLocationServiceEnabled();
     }
 
     if (status.isRestricted || status.isPermanentlyDenied) {
-      print('nono');
-
       if (!context.mounted) return;
 
       showDialog(

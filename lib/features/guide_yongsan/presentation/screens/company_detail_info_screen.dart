@@ -48,7 +48,6 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
     if (likedPlacesList != null) {
       for (var likedPlace in likedPlacesList) {
         Map decodedLikedPlace = jsonDecode(likedPlace);
-        print(decodedLikedPlace);
 
         if (decodedLikedPlace['companyId'] == widget.companyId) {
           setState(() {
@@ -77,7 +76,7 @@ class _CompanyDetailInfoScreenState extends State<CompanyDetailInfoScreen> {
 
   onHeartTap() async {
     final likedPlacesList = sharedPreferences.getStringList(likedPlaces);
-    print(likedPlacesList);
+
     Map likedPlaceInfo = {};
 
     if (likedPlacesList != null) {

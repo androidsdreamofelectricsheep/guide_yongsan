@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/company_detail_info_screen.dart';
 import 'package:guide_yongsan/features/guide_yongsan/presentation/screens/favorite_places_screen.dart';

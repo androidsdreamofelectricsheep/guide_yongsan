@@ -48,6 +48,7 @@ dependencies:
   flutter_markdown: ^0.6.20
   url_launcher: ^6.2.5
   permission_handler: ^11.3.0
+  logger: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -68,12 +68,8 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
       if (isSelectedAll) {
         final deleteIdList = favoritePlaces.map((p) => p['companyId']).toList();
         removePlaceList.addAll(deleteIdList);
-        print('removeList1');
-        print(removePlaceList);
       } else {
         removePlaceList.clear();
-        print('removeList2');
-        print(removePlaceList);
       }
     });
   }
@@ -109,7 +105,9 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
               offset: const Offset(-4, 0),
               child: TextButton.icon(
                   onPressed: onDeleteSelectedPlaces,
-                  icon: const Icon(Icons.delete_forever_rounded),
+                  icon: Icon(removePlaceList.isEmpty
+                      ? Icons.delete_outline_rounded
+                      : Icons.delete_forever_rounded),
                   label: const Text('Delete')),
             )
           ],
@@ -161,9 +159,6 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
                         removePlaceList
                             .remove(favoritePlaces[index]['companyId']);
                       }
-
-                      print('removeList3');
-                      print(removePlaceList);
                     },
                   )),
         )
@@ -202,17 +197,11 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
         favoritePlaces
             .removeWhere((element) => element['companyId'] == removeId);
         temp.remove(removeId);
+        isSelectedAll = !isSelectedAll;
       });
     }
 
     removePlaceList = temp;
-
-    print('removeList5');
-    print(removePlaceList);
-
-    print('favoritePlaces');
-    print(favoritePlaces);
-    print(favoritePlaces.length);
 
     // 저장한 장소(좋아요한 장소) 삭제 후 모바일 저장소(로컬)에 변경 사항 업데이트
     final encodedLikedPlaceList =

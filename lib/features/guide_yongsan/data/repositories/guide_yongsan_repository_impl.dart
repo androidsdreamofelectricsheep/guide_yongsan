@@ -33,10 +33,6 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
         final remoteCompanyDetailInfo = await remoteDataSource
             .getCompanyDetailInfo(companyDetailInfoParams: params);
 
-        // localDataSource.cacheYongsanRemoteData(
-        //     yongsanRemoteData: jsonEncode(remoteCompanyDetailInfo),
-        //     listNameForCaching: cachedCompanyDetail);
-
         localDataSource.cacheYongsanRemoteData(
             jsonEncode(remoteCompanyDetailInfo), cachedCompanyDetail);
 
@@ -87,10 +83,6 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
       try {
         final remoteMajorCategory = await remoteDataSource.getMajorCategory();
 
-        // await localDataSource.cacheYongsanRemoteData(
-        //     yongsanRemoteData: jsonEncode(remoteMajorCategory),
-        //     listNameForCaching: cachedMajorCategory);
-
         await localDataSource.cacheYongsanRemoteData(
             jsonEncode(remoteMajorCategory), cachedMajorCategory);
 
@@ -116,10 +108,6 @@ class GuideYongsanRepositoryImpl implements GuideYongsanRepository {
       try {
         final remoteMediumCategory =
             await remoteDataSource.getMediumCategory(majorId: params);
-
-        // localDataSource.cacheYongsanRemoteData(
-        //     yongsanRemoteData: jsonEncode(remoteMediumCategory),
-        //     listNameForCaching: cachedMediumCategory);
 
         localDataSource.cacheYongsanRemoteData(
             jsonEncode(remoteMediumCategory), cachedMediumCategory);

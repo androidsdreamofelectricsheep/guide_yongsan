@@ -44,10 +44,11 @@ class _FavoritePlaceListItemWidgetState
                   // ),
                   onPressed: widget.onChange,
                   icon: Icon(
-                      widget.value
-                          ? Icons.check_circle_rounded
-                          : Icons.check_circle_outline_rounded,
-                      color: Theme.of(context).primaryColor)),
+                    widget.value
+                        ? Icons.check_circle_rounded
+                        : Icons.check_circle_outline_rounded,
+                    color: Theme.of(context).colorScheme.primary,
+                  )),
               Flexible(
                 child: InkWell(
                   onTap: () {

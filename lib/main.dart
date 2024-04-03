@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:guide_yongsan/core/util/logger.dart';
 import 'package:guide_yongsan/core/util/permissions.dart';
 
 import 'package:guide_yongsan/features/guide_yongsan/presentation/providers/company_detail_info_provider.dart';
@@ -19,7 +20,7 @@ void main() async {
   await NaverMapSdk.instance.initialize(
       clientId: dotenv.get("NAVER_MAP_CLIENT_ID"),
       onAuthFailed: (e) {
-        print(e);
+        logger.e('Naver Map auth failed', error: e);
       });
 
   runApp(const MaterialApp(home: MyApp()));

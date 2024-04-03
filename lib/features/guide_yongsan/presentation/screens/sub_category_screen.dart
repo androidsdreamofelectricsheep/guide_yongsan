@@ -42,6 +42,7 @@ class SubCategoryScreen extends StatelessWidget {
             subId: subCategory['subId'],
             subName: subCategory['subName'],
           );
-        });
+        },
+        physics: const NeverScrollableScrollPhysics());
   }
 }
