@@ -49,6 +49,7 @@ dependencies:
   url_launcher: ^6.2.5
   permission_handler: ^11.3.0
   logger: ^2.2.0
+  flutter_native_splash: ^2.3.10
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +81,7 @@ flutter:
     #   - images/a_dot_ham.jpeg
     - .env
     - assets/map/user_marker.png
+    - assets/splash/guide_yongsan_logo.png
     - assets/terms/privacy.md
     - assets/terms/terms.md
 

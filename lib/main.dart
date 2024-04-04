@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:guide_yongsan/core/util/logger.dart';
 import 'package:guide_yongsan/core/util/permissions.dart';
@@ -14,7 +16,9 @@ import 'package:guide_yongsan/route/router.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   await dotenv.load(fileName: ".env");
 
   await NaverMapSdk.instance.initialize(
@@ -39,7 +43,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     Permissions.checkLoactionPermission(context);
+    FlutterNativeSplash.remove();
   }
 
   @override
@@ -55,9 +61,10 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         title: 'Guide Yongsan',
         theme: ThemeData(
-          useMaterial3: false,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade800),
-        ),
+            useMaterial3: false,
+            appBarTheme: const AppBarTheme(color: Color(0xff1190CB)),
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                selectedItemColor: Color(0xff1190CB))),
         routerConfig: router,
       ),
     );

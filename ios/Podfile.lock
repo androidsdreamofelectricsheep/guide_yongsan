@@ -3,6 +3,8 @@ PODS:
     - Flutter
     - ReachabilitySwift
   - Flutter (1.0.0)
+  - flutter_native_splash (0.0.1):
+    - Flutter
   - flutter_naver_map (1.0.0):
     - Flutter
     - NMapsMap (= 3.17.0)
@@ -26,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - Flutter (from `Flutter`)
+  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_naver_map (from `.symlinks/plugins/flutter_naver_map/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -44,6 +47,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   Flutter:
     :path: Flutter
+  flutter_native_splash:
+    :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_naver_map:
     :path: ".symlinks/plugins/flutter_naver_map/ios"
   geolocator_apple:
@@ -60,6 +65,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   flutter_naver_map: b18663bc83c2caaab484c58dccf239a87ebbed1b
   geolocator_apple: 9157311f654584b9bb72686c55fc02a97b73f461
   NMapsGeometry: 53c573ead66466681cf123f99f698dc8071a4b83
@@ -72,4 +78,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8bef5743fd518cc61762ba706bd29a40fcfaccd4
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2
