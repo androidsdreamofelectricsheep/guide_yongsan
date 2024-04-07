@@ -82,7 +82,9 @@ flutter:
     #   - images/a_dot_ham.jpeg
     - .env
     - assets/map/user_marker.png
-    - assets/splash/guide_yongsan_logo.png
+    - assets/splash/guide_yongsan_splash_logo.png
+    - assets/icon/guide_yongsan_icon_ios.png
+    - assets/icon/guide_yongsan_icon.png
     - assets/terms/privacy.md
     - assets/terms/terms.md
 
