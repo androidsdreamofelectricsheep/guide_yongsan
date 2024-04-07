@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -16,6 +17,8 @@ import 'package:guide_yongsan/route/router.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  SystemChrome.setPreferredOrientations(// 세로 모드 고정
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
