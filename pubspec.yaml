@@ -83,8 +83,8 @@ flutter:
     - .env
     - assets/map/user_marker.png
     - assets/splash/guide_yongsan_splash_logo.png
-    - assets/icon/guide_yongsan_icon_ios.png
-    - assets/icon/guide_yongsan_icon_android.png
+    - assets/icon/guide_yongsan_icon_android_by_arcadekid.png
+    - assets/icon/guide_yongsan_icon_ios_by_arcadekid.png
     - assets/terms/privacy.md
     - assets/terms/terms.md
 

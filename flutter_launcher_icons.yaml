@@ -1,8 +1,8 @@
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path_android: "assets/icon/guide_yongsan_icon_android.png"
-  image_path_ios: "assets/icon/guide_yongsan_icon_ios.png"
+  image_path_android: "assets/icon/guide_yongsan_icon_android_by_arcadekid.png"
+  image_path_ios: "assets/icon/guide_yongsan_icon_ios_by_arcadekid.png"
   adaptive_icon_background: "#ffffff"
   remove_alpha_ios: true
   min_sdk_android: 21 # android min sdk min:16, default 21
