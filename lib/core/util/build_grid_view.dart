@@ -8,7 +8,9 @@ GridView buildGirdView(
     ) {
   return GridView.builder(
       itemCount: itemCount,
-      physics: physics,
+      physics: itemCount < 20
+          ? const NeverScrollableScrollPhysics()
+          : const RangeMaintainingScrollPhysics(),
       gridDelegate: gridDelegate,
       itemBuilder: itemBuilder);
 }

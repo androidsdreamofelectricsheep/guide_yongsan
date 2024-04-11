@@ -1,4 +1,4 @@
-package com.example.guide_yongsan
+package com.arcadekid.guide_yongsan
 
 import io.flutter.embedding.android.FlutterActivity
 

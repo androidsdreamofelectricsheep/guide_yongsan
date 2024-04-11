@@ -1,3 +1,5 @@
+key.properties
+upload-keystore.jks
 *.env
 # Miscellaneous
 *.class
