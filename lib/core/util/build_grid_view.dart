@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guide_yongsan/core/util/device_checker.dart';
 
 GridView buildGirdView(
     {required int itemCount,
@@ -8,9 +9,9 @@ GridView buildGirdView(
     ) {
   return GridView.builder(
       itemCount: itemCount,
-      physics: itemCount < 20
-          ? const NeverScrollableScrollPhysics()
-          : const RangeMaintainingScrollPhysics(),
+      physics: isTablet || itemCount >= 18
+          ? const RangeMaintainingScrollPhysics()
+          : const NeverScrollableScrollPhysics(),
       gridDelegate: gridDelegate,
       itemBuilder: itemBuilder);
 }
