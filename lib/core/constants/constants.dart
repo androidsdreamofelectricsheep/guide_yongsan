@@ -46,7 +46,6 @@ const cacheFailureMsg = 'No local data found';
 
 const likedPlaces = 'likedPlaces';
 
-// const menuList = ['Terms & Conditions', 'Privacy Policy', 'Contact'];
 const menuList = [
   {'mname': 'Terms & Conditions', 'markdown': Asset.terms},
   {'mname': 'Privacy Policy', 'markdown': Asset.privacy},

@@ -1,16 +1,56 @@
-# guide_yongsan
+<p align="center">
+  <img src="assets/icon/guide_yongsan_icon_android_by_arcadekid.png" width="95" />
+</p>
+<h1 align="center">GuideYongsan</h1>
 
-A new Flutter project.
+GuideYongsan is mainly to help foreigners who are not familiar with Hangul, Korean when staying in Yongsan find places in need.
 
-## Getting Started
+All the infrastructure in Yongsan categorized for you to search easily such as restaurants, hotels, shopping centers, embassies and more.
 
-This project is a starting point for a Flutter application.
+For a more in-depth description, refer to the [documentation](./docs/) folder.
 
-A few resources to get you started if this is your first Flutter project:
+### Download the application from application stores
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<div>
+<a href='https://apps.apple.com/app/guideyongsan/id6484504534' target='_blank'><img alt='Get it on the App Store' src='assets/readme/app_store.png' height='48px'/></a>
+<!-- <a href='https://play.google.com/store/apps/details?id=comingsoon' target='_blank'><img alt='Get it on Google Play' src='assets/release/google_play.png' height='48px'/></a> -->
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p><i>Android will be coming soon...</i></p>
+</div>
+
+## Documentation Contents
+
+- [Directory Structure](./docs/directory_structure.md)
+  - Declares the directory structure and overall architecture
+- [Project Setup and Building](./docs/build.md)
+  - Instructions on how to set up and build the project, information about used dependencies
+- [Resources](./docs/resources.md)
+  - Resources for developers
+
+## Public Data Portal
+
+GuideYongsan utilizes an given api from Public Data Portal [Yongsan-gu, Seoul_Convenience facilities/company inquiry service for foreigners](https://www.data.go.kr/en/data/15097096/openapi.do#/tab_layer_prcuse_exam).
+
+More detail and usage guide, see [OGD Reuse Guides](https://www.data.go.kr/en/ugs/selectPublicDataUseGuideView.do#publicData_summary_03).
+
+## Naver Map
+
+GuideYongsan also uses [Naver Cloud Platform](https://www.ncloud.com/product/applicationService/maps). In order for it to work, you need to obtain your API key. After you create the key, you will also need to enable API for each platform. To enable Naver Map for Android, provide Android app package name e.g. "com.example.your_app". For iOS provide iOS Bundle ID e.g. "com.example.yourApp"
+
+For more details, see [Prerequisites for using Maps](https://guide.ncloud-docs.com/docs/maps-spec).
+
+If files contain Google Maps API are added to .gitignore, so your key will not be accidentally committed. Make sure you don't put your API keys anywhere else before pushing your work.
+
+> 💡 _This README is a work-in-progress and will be soon updated with all necessary information about the application architecture, ways to build the project, and ways to contribute to this project._
+
+---
+
+## Screenshots
+
+| Category                                               | Location List                                               | Map View                                               | Location Information                                               | Favorites                                               |
+| ------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------- |
+| <img src="assets/readme/category_sc.png" width="200"/> | <img src="assets/readme/location_list_sc.png" width="200"/> | <img src="assets/readme/map_view_sc.png" width="200"/> | <img src="assets/readme/location_information_sc.png" width="200"/> | <img src="assets/readme/favorites_sc.png" width="200"/> |
+
+---
+
+@2024 [GuideYongsan](https://n01077202.wixsite.com/guideyongsan)
