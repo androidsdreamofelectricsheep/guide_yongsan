@@ -26,9 +26,8 @@ For a more in-depth description, refer to the [documentation](./docs/) folder.
 </cite></footer>
 </blockquote>
 
-<div>
-<strong>I am working on it!</strong>
-<h2 style="display:inline"> 💪🏼</h2>
+<div style="display:flex; flex-direction: row;">
+<strong>I am working on it! 💪🏼</strong>
 </div>
 </div>
 
