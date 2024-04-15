@@ -42,7 +42,7 @@ For a more in-depth description, refer to the [documentation](./docs/) folder.
 
 ## Public Data Portal
 
-GuideYongsan utilizes an given api from Public Data Portal [Yongsan-gu, Seoul_Convenience facilities/company inquiry service for foreigners](https://www.data.go.kr/en/data/15097096/openapi.do#/tab_layer_prcuse_exam).
+GuideYongsan utilizes a given api from Public Data Portal [Yongsan-gu, Seoul_Convenience facilities/company inquiry service for foreigners](https://www.data.go.kr/en/data/15097096/openapi.do#/tab_layer_prcuse_exam).
 
 More detail and usage guide, see [OGD Reuse Guides](https://www.data.go.kr/en/ugs/selectPublicDataUseGuideView.do#publicData_summary_03).
 
