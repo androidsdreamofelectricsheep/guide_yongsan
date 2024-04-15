@@ -13,9 +13,23 @@ For a more in-depth description, refer to the [documentation](./docs/) folder.
 
 <div>
 <a href='https://apps.apple.com/app/guideyongsan/id6484504534' target='_blank'><img alt='Get it on the App Store' src='assets/readme/app_store.png' height='48px'/></a>
+
 <!-- <a href='https://play.google.com/store/apps/details?id=comingsoon' target='_blank'><img alt='Get it on Google Play' src='assets/release/google_play.png' height='48px'/></a> -->
 
-<p><i>Android will be coming soon...</i></p>
+<i>Android will be coming soon...</i>
+</br>
+
+<blockquote cite="https://support.google.com/googleplay/android-developer/answer/14151465?hl=en">
+<small>Due to the fact that since November 2023, Google has changed their requirements for publishing Android applications that must meet the process; <i>"...closed test for your app with a minimum of 20 testers who have been opted-in for at least the last 14 days..."</i>
+</small>
+ <footer>—Play Console Help, <cite><a href="https://support.google.com/googleplay/android-developer/answer/14151465?hl=en">App testing requirements for new personal developer accounts</a>
+</cite></footer>
+</blockquote>
+
+<div>
+<strong>I am working on it!</strong>
+<h2 style="display:inline"> 💪🏼</h2>
+</div>
 </div>
 
 ## Documentation Contents
