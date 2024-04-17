@@ -68,9 +68,7 @@ If files contain Google Maps API are added to .gitignore, so your key will not b
 
 ## Application Log
 
-Please check the whole story of GuideYongsan.
-
-https://alabaster-caravel-721.notion.site/GuideYongsan-eb0c3cde567840988109fc5499f2be6e
+Please check [the whole story](https://alabaster-caravel-721.notion.site/GuideYongsan-eb0c3cde567840988109fc5499f2be6e) of GuideYongsan.
 
 ---
 
