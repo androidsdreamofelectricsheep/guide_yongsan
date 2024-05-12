@@ -169,7 +169,7 @@ class _FavoritePlacesScreenState extends State<FavoritePlacesScreen> {
                         )),
               )
             : const Center(
-                child: Text('There is no favorite places stored'),
+                child: Text('There is no favorite place stored'),
               )
       ]),
     );
